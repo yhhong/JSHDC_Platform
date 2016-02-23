@@ -6,8 +6,25 @@ package jshdc.bean;
  */
 public class Channel {
 
-    public String id;
+    public long id;
     public String name;
     public String url;
     public String description;
+
+    public Channel(long id, String name, String url, String description) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Channel{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

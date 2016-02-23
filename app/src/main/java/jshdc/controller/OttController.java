@@ -3,6 +3,7 @@ package jshdc.controller;
 import jshdc.bean.*;
 import jshdc.bean.response.ott.*;
 import jshdc.util.ContentType;
+import jshdc.util.ContentUrl;
 import jshdc.util.TemplateType;
 import jshdc.util.ViewType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -106,13 +107,13 @@ public class OttController {
                 List<Content> vodContents2 = new ArrayList<>();
                 vodContents2.add(new Content(0, "霍比特人意外之旅", Pic.PIC_SMALL_6, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", "9.6", "10000次"));
                 vodContents2.add(new Content(0, "指环王", Pic.PIC_SMALL_7, ContentType.VOD_VIDEO, "视频ID", ViewType.LIVE_PLAYER, "视频播放地址", "9.6", "2000次"));
-                floors.add(new Floor(0, "电影", "排序", TemplateType.COUNT_TWO, null, null, "CCTV5/江苏卫视", null, vodContents2, null));
+                floors.add(new Floor(0, "电影", "排序", TemplateType.COUNT_TWO, null, null, null, null, vodContents2, null));
 
                 List<Content> vodContents3 = new ArrayList<>();
                 vodContents3.add(new Content(0, "名侦探柯南", Pic.PIC_SMALL_1, ContentType.VOD_TELEPALY, "电视剧ID", ViewType.VOD_PLAYER, "电视剧内容ID", null, null));
                 vodContents3.add(new Content(0, "全职猎人", Pic.PIC_SMALL_2, ContentType.VOD_TELEPALY, "电视剧ID", ViewType.VOD_PLAYER, "电视剧内容ID", null, null));
                 vodContents3.add(new Content(0, "乌龙派出所", Pic.PIC_SMALL_3, ContentType.VOD_TELEPALY, "电视剧ID", ViewType.VOD_PLAYER, "电视剧内容ID", null, null));
-                floors.add(new Floor(0, "电视剧", "排序", TemplateType.COUNT_THREE, null, null, "精选/欧美/电视剧/娱乐", null, vodContents3, null));
+                floors.add(new Floor(0, "电视剧", "排序", TemplateType.COUNT_THREE, null, null, null, null, vodContents3, null));
 
                 List<Content> vodContents4 = new ArrayList<>();
                 vodContents4.add(new Content(0, "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", "9.6", null));
@@ -142,12 +143,42 @@ public class OttController {
     @RequestMapping(value = "/getChannelDetail")
     public GetChannelDetailResp getChannelDetail(@RequestParam String userToken, @RequestParam String channelId) {
         GetChannelDetailResp resp = new GetChannelDetailResp();
-
-        Channel channel = new Channel();
-        channel.id = "" + channelId;
-        channel.name = "name" + channelId;
-        channel.url = "www.baidu.com";
-        channel.description = "description " + channelId;
+        Channel channel;
+        switch (channelId) {
+            case "1":
+                channel = new Channel(1, "CCTV1", ContentUrl.CCTV1, null);
+                break;
+            case "2":
+                channel = new Channel(2, "CCTV2", ContentUrl.CCTV2, null);
+                break;
+            case "3":
+                channel = new Channel(3, "CCTV3", ContentUrl.CCTV3, null);
+                break;
+            case "4":
+                channel = new Channel(4, "CCTV4", ContentUrl.CCTV4, null);
+                break;
+            case "5":
+                channel = new Channel(5, "CCTV5", ContentUrl.CCTV5, null);
+                break;
+            case "6":
+                channel = new Channel(6, "CCTV6", ContentUrl.CCTV6, null);
+                break;
+            case "7":
+                channel = new Channel(7, "CCTV7", ContentUrl.CCTV7, null);
+                break;
+            case "8":
+                channel = new Channel(8, "CCTV8", ContentUrl.CCTV8, null);
+                break;
+            case "9":
+                channel = new Channel(9, "CCTV9", ContentUrl.CCTV9, null);
+                break;
+            case "10":
+                channel = new Channel(10, "CCTV10", ContentUrl.CCTV10, null);
+                break;
+            default:
+                channel = new Channel(1, "CCTV1", ContentUrl.CCTV1, null);
+                break;
+        }
         resp.channel = channel;
         return resp;
     }
@@ -155,58 +186,43 @@ public class OttController {
     @RequestMapping(value = "/getProgramDetail")
     public GetProgramDetailResp getProgramDetail(@RequestParam String userToken, @RequestParam String programId) {
         GetProgramDetailResp resp = new GetProgramDetailResp();
-
-        Program program = new Program();
-        program.id = "" + programId;
-        program.name = "name" + programId;
-        program.showTime = "12:00";
-        program.playType = "";
-        program.description = "channel " + programId;
+        Program program;
+        switch (programId) {
+            case "1":
+                program = new Program(1, "世界杯战况", "11:00", "回看", "2014年世界杯");
+                break;
+            case "2":
+                program = new Program(2, "新闻30分", "12:00", "回看", "CCTV9新闻台正午播放");
+                break;
+            default:
+                program = new Program(1, "世界杯战况", "11:00", "回看", "2014年世界杯");
+                break;
+        }
         resp.program = program;
         resp.result = 0;
         resp.message = "success";
         return resp;
     }
 
-    @RequestMapping(value = "/getVideoDetail")
-    public GetVideoDetailResp getVideoDetail(@RequestParam String userToken, @RequestParam String videoId) {
-        GetVideoDetailResp resp = new GetVideoDetailResp();
-
-        Video video = new Video();
-        video.id = "" + videoId;
-        video.playId = "http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4";
-        video.name = "name" + videoId;
-        video.poster = "";
-        video.director = "";
-        video.actors = "";
-        video.description = "description " + videoId;
-        video.score = "";
-        video.showTime = "";
-        video.playCount = "";
-        video.time = "";
-        resp.video = video;
-        resp.result = 0;
-        resp.message = "success";
-        return resp;
-    }
 
     @RequestMapping(value = "/getTeleplayDetail")
     public GetTeleplayDetailResp getTeleplayDetail(@RequestParam String userToken, @RequestParam String teleplayId) {
-
         GetTeleplayDetailResp resp = new GetTeleplayDetailResp();
-
-        Teleplay teleplay = new Teleplay();
-        teleplay.id = "" + teleplayId;
-        teleplay.name = "name" + teleplayId;
-        teleplay.poster = "";
-        teleplay.director = "";
-        teleplay.actors = "";
-        teleplay.description = "description " + teleplayId;
-        teleplay.score = "";
-        teleplay.showTime = "";
-        teleplay.playCount = "";
-        teleplay.total = "";
-        teleplay.updateCount = "";
+        Teleplay teleplay;
+        switch (teleplayId) {
+            case "1":
+                teleplay = new Teleplay(1, "名侦探柯南", null, "导演", "柯南/新一/小兰", "真相只有一个", "9.1", "2001", "21亿", "800集", "656集");
+                break;
+            case "2":
+                teleplay = new Teleplay(2, "全职猎人", null, "导演", "小杰/西索", "惊险刺激的游戏世界,小杰与西索幻影旅团的精彩对决", "9.3", "2001", "500万", "80集", "80集");
+                break;
+            case "3":
+                teleplay = new Teleplay(3, "乌龙派出所", null, "导演", "两津勘吉/中山/本田", "龟有公园前派出所,爆笑登场", "9.9", "2001", "2000万", "320集", "320集");
+                break;
+            default:
+                teleplay = new Teleplay(1, "名侦探柯南", null, "导演", "柯南/新一/小兰", "真相只有一个", "9.1", "2001", "21亿", "800集", "656集");
+                break;
+        }
         resp.teleplay = teleplay;
         resp.result = 0;
         resp.message = "success";
@@ -216,22 +232,23 @@ public class OttController {
     @RequestMapping(value = "/getTeleplayVideos")
     public GetTeleplayVideosResp getTeleplayVideos(@RequestParam String userToken, @RequestParam String teleplayId) {
         GetTeleplayVideosResp resp = new GetTeleplayVideosResp();
-
         List<Video> videos = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Video video = new Video();
-            video.id = "" + i;
-            video.playId = "";
-            video.name = "name" + i;
-            video.poster = "";
-            video.director = "";
-            video.actors = "";
-            video.description = "description " + i;
-            video.score = "";
-            video.showTime = "";
-            video.playCount = "";
-            video.time = "";
-            videos.add(video);
+        switch (teleplayId) {
+            case "1":
+            case "2":
+            case "3":
+            default:
+                videos.add(new Video(1, ContentUrl.MOVE1, "生化危机", null, null, null, null, "8.9", null, "12345次", "95分钟"));
+                videos.add(new Video(2, ContentUrl.MOVE2, "古墓丽影", null, null, null, null, "8.0", null, "31345次", "105分钟"));
+                videos.add(new Video(3, ContentUrl.MOVE3, "像素大战", null, null, null, null, "9.0", null, "33345次", "112分钟"));
+                videos.add(new Video(4, ContentUrl.MOVE4, "地牢围攻", null, null, null, null, "8.8", null, "12331次", "95分钟"));
+                videos.add(new Video(5, ContentUrl.MOVE5, "超能特工队", null, null, null, null, "8.7", null, "55335次", "90分钟"));
+                videos.add(new Video(6, ContentUrl.MOVE6, "头脑特工队", null, null, null, null, "9.9", null, "14242次", "93分钟"));
+                videos.add(new Video(7, ContentUrl.MOVE7, "熊出没之雪岭熊风", null, null, null, null, "7.0", null, "12245次", "98分钟"));
+                videos.add(new Video(8, ContentUrl.MOVE8, "63_芈月传", null, null, null, null, "7.7", null, "42545次", "97分钟"));
+                videos.add(new Video(9, ContentUrl.MOVE9, "十七岁", null, null, null, null, "8.9", null, "1345次", "125分钟"));
+                videos.add(new Video(10, ContentUrl.MOVE10, "解救吾先生", null, null, null, null, "9.1", null, "26445次", "153分钟"));
+                break;
         }
         resp.videos = videos;
         resp.result = 0;
@@ -239,17 +256,64 @@ public class OttController {
         return resp;
     }
 
+    @RequestMapping(value = "/getVideoDetail")
+    public GetVideoDetailResp getVideoDetail(@RequestParam String userToken, @RequestParam String videoId) {
+        GetVideoDetailResp resp = new GetVideoDetailResp();
+        Video video;
+        switch (videoId) {
+            case "1":
+                video = new Video(1, ContentUrl.MOVE1, "生化危机", null, null, null, null, "8.9", null, "12345次", "95分钟");
+                break;
+            case "2":
+                video = new Video(2, ContentUrl.MOVE2, "古墓丽影", null, null, null, null, "8.0", null, "31345次", "105分钟");
+                break;
+            case "3":
+                video = new Video(3, ContentUrl.MOVE3, "像素大战", null, null, null, null, "9.0", null, "33345次", "112分钟");
+                break;
+            case "4":
+                video = new Video(4, ContentUrl.MOVE4, "地牢围攻", null, null, null, null, "8.8", null, "12331次", "95分钟");
+                break;
+            case "5":
+                video = new Video(5, ContentUrl.MOVE5, "超能特工队", null, null, null, null, "8.7", null, "55335次", "90分钟");
+                break;
+            case "6":
+                video = new Video(6, ContentUrl.MOVE6, "头脑特工队", null, null, null, null, "9.9", null, "14242次", "93分钟");
+                break;
+            case "7":
+                video = new Video(7, ContentUrl.MOVE7, "熊出没之雪岭熊风", null, null, null, null, "7.0", null, "12245次", "98分钟");
+                break;
+            case "8":
+                video = new Video(8, ContentUrl.MOVE8, "63_芈月传", null, null, null, null, "7.7", null, "42545次", "97分钟");
+                break;
+            case "9":
+                video = new Video(9, ContentUrl.MOVE9, "十七岁", null, null, null, null, "8.9", null, "1345次", "125分钟");
+                break;
+            case "10":
+                video = new Video(10, ContentUrl.MOVE10, "解救吾先生", null, null, null, null, "9.1", null, "26445次", "153分钟");
+                break;
+            default:
+                video = new Video(1, ContentUrl.MOVE1, "生化危机", null, null, null, null, "8.9", null, "12345次", "95分钟");
+                break;
+        }
+        resp.video = video;
+        resp.result = 0;
+        resp.message = "success";
+        return resp;
+    }
+
     @RequestMapping(value = "/getChannelTags")
     public GetChannelTagsResp getChannelTags(@RequestParam String userToken) {
-
         GetChannelTagsResp resp = new GetChannelTagsResp();
         List<ChannelTag> tags = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            ChannelTag channelTag = new ChannelTag();
-            channelTag.id = "" + i;
-            channelTag.name = "channel tag " + i;
-            tags.add(channelTag);
-        }
+        tags.add(new ChannelTag(1, "所有"));
+        tags.add(new ChannelTag(2, "央视"));
+        tags.add(new ChannelTag(3, "地方"));
+        tags.add(new ChannelTag(4, "体育"));
+        tags.add(new ChannelTag(5, "教育"));
+        tags.add(new ChannelTag(6, "健康"));
+        tags.add(new ChannelTag(7, "少儿"));
+        tags.add(new ChannelTag(8, "购物"));
+        tags.add(new ChannelTag(9, "旅游"));
         resp.channelTags = tags;
         resp.result = 0;
         resp.message = "success";
@@ -257,16 +321,65 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getChannels")
-    public GetChannelsResp getChannels(@RequestParam String userToken) {
+    public GetChannelsResp getChannels(@RequestParam String userToken, String channelTagId) {
         GetChannelsResp resp = new GetChannelsResp();
         List<Channel> channels = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Channel channel = new Channel();
-            channel.id = "" + i;
-            channel.name = "channel " + i;
-            channel.url = "";
-            channel.description = "";
-            channels.add(channel);
+        switch (channelTagId) {
+            case "1":// 所有
+                channels.add(new Channel(1, "CCTV1", ContentUrl.CCTV1, null));
+                channels.add(new Channel(2, "CCTV2", ContentUrl.CCTV2, null));
+                channels.add(new Channel(3, "CCTV3", ContentUrl.CCTV3, null));
+                channels.add(new Channel(4, "CCTV4", ContentUrl.CCTV4, null));
+                channels.add(new Channel(5, "CCTV5", ContentUrl.CCTV5, null));
+                channels.add(new Channel(6, "CCTV6", ContentUrl.CCTV6, null));
+                channels.add(new Channel(7, "CCTV7", ContentUrl.CCTV7, null));
+                channels.add(new Channel(8, "CCTV8", ContentUrl.CCTV8, null));
+                channels.add(new Channel(9, "CCTV9", ContentUrl.CCTV9, null));
+                channels.add(new Channel(10, "CCTV10", ContentUrl.CCTV10, null));
+                break;
+            case "2"://央视
+                channels.add(new Channel(2, "CCTV2", ContentUrl.CCTV2, null));
+                channels.add(new Channel(5, "CCTV5", ContentUrl.CCTV5, null));
+                break;
+            case "3"://地方
+                channels.add(new Channel(2, "CCTV2", ContentUrl.CCTV2, null));
+                channels.add(new Channel(3, "CCTV3", ContentUrl.CCTV3, null));
+                channels.add(new Channel(6, "CCTV6", ContentUrl.CCTV6, null));
+                break;
+            case "4"://体育
+                channels.add(new Channel(4, "CCTV4", ContentUrl.CCTV4, null));
+                break;
+            case "5"://教育
+                channels.add(new Channel(2, "CCTV2", ContentUrl.CCTV2, null));
+                channels.add(new Channel(5, "CCTV5", ContentUrl.CCTV5, null));
+                break;
+            case "6"://健康
+                channels.add(new Channel(6, "CCTV6", ContentUrl.CCTV6, null));
+                break;
+            case "7"://少儿
+                channels.add(new Channel(9, "CCTV9", ContentUrl.CCTV9, null));
+                channels.add(new Channel(10, "CCTV10", ContentUrl.CCTV10, null));
+                break;
+            case "8"://购物
+                channels.add(new Channel(8, "CCTV8", ContentUrl.CCTV8, null));
+                channels.add(new Channel(9, "CCTV9", ContentUrl.CCTV9, null));
+                channels.add(new Channel(10, "CCTV10", ContentUrl.CCTV10, null));
+                break;
+            case "9"://旅游
+                channels.add(new Channel(8, "CCTV8", ContentUrl.CCTV8, null));
+                break;
+            default:
+                channels.add(new Channel(1, "CCTV1", ContentUrl.CCTV1, null));
+                channels.add(new Channel(2, "CCTV2", ContentUrl.CCTV2, null));
+                channels.add(new Channel(3, "CCTV3", ContentUrl.CCTV3, null));
+                channels.add(new Channel(4, "CCTV4", ContentUrl.CCTV4, null));
+                channels.add(new Channel(5, "CCTV5", ContentUrl.CCTV5, null));
+                channels.add(new Channel(6, "CCTV6", ContentUrl.CCTV6, null));
+                channels.add(new Channel(7, "CCTV7", ContentUrl.CCTV7, null));
+                channels.add(new Channel(8, "CCTV8", ContentUrl.CCTV8, null));
+                channels.add(new Channel(9, "CCTV9", ContentUrl.CCTV9, null));
+                channels.add(new Channel(10, "CCTV10", ContentUrl.CCTV10, null));
+                break;
         }
         resp.channels = channels;
         resp.result = 0;
@@ -275,17 +388,29 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getChannelPrograms")
-    public GetProgramsResp getChannelPrograms(@RequestParam String userToken) {
+    public GetProgramsResp getChannelPrograms(@RequestParam String userToken, String channelId, long startTime, long endTime) {
         GetProgramsResp resp = new GetProgramsResp();
         List<Program> programs = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Program program = new Program();
-            program.id = "" + i;
-            program.name = "program " + i;
-            program.showTime = "";
-            program.playType = "";
-            program.description = "";
-            programs.add(program);
+        switch (channelId) {
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+            case "10":
+            default:
+                programs.add(new Program(1, "等着我", "10:00", "回看", null));
+                programs.add(new Program(2, "午间新闻", "11:00", "回看", null));
+                programs.add(new Program(3, "2016等着我特别节目", "12:00", "直播", null));
+                programs.add(new Program(4, "电视剧:问家人", "13:00", "直播", null));
+                programs.add(new Program(5, "我爱我家", "14:00", "直播", null));
+                programs.add(new Program(6, "焦点访谈", "15:00", "直播", null));
+                programs.add(new Program(7, "西游记", "16:00", "直播", null));
+                break;
         }
         resp.programs = programs;
         resp.result = 0;
@@ -384,21 +509,11 @@ public class OttController {
         GetCollectVideosResp resp = new GetCollectVideosResp();
 
         List<Video> videos = new ArrayList<>();
-        for (int j = 0; j < 5; j++) {
-            Video video = new Video();
-            video.id = "id" + j;
-            video.playId = "http://static.tripbe.com/videofiles/20121214/9533522808.f4v.mp4";
-            video.name = "name " + j;
-            video.poster = "poster" + j;
-            video.director = "director " + j;
-            video.actors = "actors " + j;
-            video.description = "description " + j;
-            video.score = "score";
-            video.showTime = "showTime";
-            video.playCount = "99999";
-            video.time = "45:59";
-            videos.add(video);
-        }
+
+        videos.add(new Video(8, ContentUrl.MOVE8, "63_芈月传", null, null, null, null, "7.7", null, "42545次", "97分钟"));
+        videos.add(new Video(9, ContentUrl.MOVE9, "十七岁", null, null, null, null, "8.9", null, "1345次", "125分钟"));
+        videos.add(new Video(10, ContentUrl.MOVE10, "解救吾先生", null, null, null, null, "9.1", null, "26445次", "153分钟"));
+
         resp.videos = videos;
         resp.result = 0;
         resp.message = "success";
