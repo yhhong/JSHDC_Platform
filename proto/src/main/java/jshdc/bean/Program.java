@@ -6,7 +6,7 @@ package jshdc.bean;
  */
 public class Program {
 
-    public long id;
+    public String id;
     public String name;
     public String showTime;
     /**
@@ -15,7 +15,7 @@ public class Program {
     public String playType;
     public String description;
 
-    public Program(long id, String name, String showTime, String playType, String description) {
+    public Program(String id, String name, String showTime, String playType, String description) {
         this.id = id;
         this.name = name;
         this.showTime = showTime;

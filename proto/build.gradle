@@ -25,7 +25,7 @@ uploadArchives {
                 groupId 'com.aspirecn.jshdc'
                 artifactId 'jshdc-proto'
                 packaging 'jar'
-                version '0.0.2'
+                version '0.0.4'
             }
         }
     }

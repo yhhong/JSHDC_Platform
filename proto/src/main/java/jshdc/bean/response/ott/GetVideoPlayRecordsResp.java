@@ -1,6 +1,7 @@
 package jshdc.bean.response.ott;
 
 import jshdc.bean.Content;
+import jshdc.bean.PlayRecord;
 
 import java.util.List;
 
@@ -11,14 +12,14 @@ import java.util.List;
 public class GetVideoPlayRecordsResp {
     public int result;
     public String message;
-    public List<Content> contents;
+    public List<PlayRecord> playRecords;
 
     @Override
     public String toString() {
         return "GetVideoPlayRecordsResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
-                ", contents=" + contents +
+                ", playRecords=" + playRecords +
                 '}';
     }
 }

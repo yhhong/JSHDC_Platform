@@ -6,12 +6,12 @@ package jshdc.bean;
  */
 public class Channel {
 
-    public long id;
+    public String id;
     public String name;
     public String url;
     public String description;
 
-    public Channel(long id, String name, String url, String description) {
+    public Channel(String id, String name, String url, String description) {
         this.id = id;
         this.name = name;
         this.url = url;

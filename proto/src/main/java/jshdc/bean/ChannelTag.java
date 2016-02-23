@@ -5,10 +5,10 @@ package jshdc.bean;
  * Created by yinghuihong on 16/1/11.
  */
 public class ChannelTag {
-    public long id;
+    public String id;
     public String name;
 
-    public ChannelTag(long id, String name) {
+    public ChannelTag(String id, String name) {
         this.id = id;
         this.name = name;
     }

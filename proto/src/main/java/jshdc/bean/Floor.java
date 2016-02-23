@@ -7,7 +7,7 @@ import java.util.List;
  * Created by yinghuihong on 16/1/8.
  */
 public class Floor {
-    public long id;
+    public String id;
     public String name;
     public String order;
     /**
@@ -37,7 +37,7 @@ public class Floor {
      * @param contents
      * @param messages
      */
-    public Floor(long id, String name, String order, String displayType, String view, String argument, String element1, String element2, List<Content> contents, List<Message> messages) {
+    public Floor(String id, String name, String order, String displayType, String view, String argument, String element1, String element2, List<Content> contents, List<Message> messages) {
         this.id = id;
         this.name = name;
         this.order = order;

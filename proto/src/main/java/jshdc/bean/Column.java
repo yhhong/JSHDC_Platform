@@ -5,11 +5,11 @@ package jshdc.bean;
  * Created by yinghuihong on 16/1/8.
  */
 public class Column {
-    public long id;
+    public String id;
     public String name;
     public String status;
 
-    public Column(long id, String name) {
+    public Column(String id, String name) {
         this.id = id;
         this.name = name;
     }

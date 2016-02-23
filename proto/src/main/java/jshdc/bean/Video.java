@@ -5,7 +5,7 @@ package jshdc.bean;
  * Created by yinghuihong on 16/1/11.
  */
 public class Video {
-    public long id;
+    public String id;
     public String playId;
     public String name;
     public String poster;
@@ -17,7 +17,7 @@ public class Video {
     public String playCount;
     public String time;
 
-    public Video(long id, String playId, String name, String poster, String director, String actors, String description,
+    public Video(String id, String playId, String name, String poster, String director, String actors, String description,
                  String score, String showTime, String playCount, String time) {
         this.id = id;
         this.playId = playId;

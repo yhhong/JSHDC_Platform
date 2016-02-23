@@ -8,4 +8,6 @@ public interface ContentType {
     String LIVE_PROGRAM = "2";
     String VOD_TELEPALY = "3";
     String VOD_VIDEO = "4";
+    String APK_GAME = "5";
+    String APK_APP = "6";
 }

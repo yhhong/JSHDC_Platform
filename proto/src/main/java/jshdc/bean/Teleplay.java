@@ -5,7 +5,7 @@ package jshdc.bean;
  * Created by yinghuihong on 16/1/11.
  */
 public class Teleplay {
-    public long id;
+    public String id;
     public String name;
     public String poster;
     public String director;
@@ -17,7 +17,7 @@ public class Teleplay {
     public String total;
     public String updateCount;
 
-    public Teleplay(long id, String name, String poster, String director, String actors, String description,
+    public Teleplay(String id, String name, String poster, String director, String actors, String description,
                     String score, String showTime, String playCount, String total, String updateCount) {
         this.id = id;
         this.name = name;
