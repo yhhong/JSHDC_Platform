@@ -12,6 +12,7 @@ public class GetColumnsResp {
     public int result;
     public String message;
     public List<Column> columns;
+    public long lastModifyTime;
 
     @Override
     public String toString() {
@@ -19,6 +20,7 @@ public class GetColumnsResp {
                 "result=" + result +
                 ", message='" + message + '\'' +
                 ", columns=" + columns +
+                ", lastModifyTime=" + lastModifyTime +
                 '}';
     }
 }

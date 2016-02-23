@@ -5,9 +5,14 @@ package jshdc.bean;
  * Created by yinghuihong on 16/1/8.
  */
 public class Column {
-    public String id;
+    public long id;
     public String name;
     public String status;
+
+    public Column(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     @Override
     public String toString() {

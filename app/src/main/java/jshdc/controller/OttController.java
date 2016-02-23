@@ -2,6 +2,9 @@ package jshdc.controller;
 
 import jshdc.bean.*;
 import jshdc.bean.response.ott.*;
+import jshdc.util.ContentType;
+import jshdc.util.TemplateType;
+import jshdc.util.ViewType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,52 +21,110 @@ public class OttController {
 
     @RequestMapping(value = "/getColumns")
     public GetColumnsResp getColumns(@RequestParam String userToken, @RequestParam long lastModifyTime) {
-        List<Column> columns = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            Column column = new Column();
-            column.id = String.valueOf(i);
-            column.name = "column" + i;
-            column.status = "0";
-            columns.add(column);
-        }
         GetColumnsResp resp = new GetColumnsResp();
+
+        if (lastModifyTime > (System.currentTimeMillis() - 1 * 60 * 1000)) {
+            resp.result = 1;
+            resp.message = "没有更新的数据了..";
+            return resp;
+        }
+        List<Column> columns = new ArrayList<>();
+
+        columns.add(new Column(2, "精选"));
+        columns.add(new Column(3, "欧美"));
+        columns.add(new Column(4, "电视剧"));
+        columns.add(new Column(5, "娱乐"));
+        columns.add(new Column(6, "健康"));
+        columns.add(new Column(7, "教育"));
+        columns.add(new Column(8, "韩剧"));
+        columns.add(new Column(9, "综艺"));
+
         resp.columns = columns;
         resp.result = 0;
         resp.message = "success";
+        resp.lastModifyTime = System.currentTimeMillis();
         return resp;
     }
 
     @RequestMapping(value = "/getFloors")
     public GetFloorsResp getFloors(@RequestParam String userToken, @RequestParam String columnId, @RequestParam long lastModifyTime) {
         GetFloorsResp resp = new GetFloorsResp();
-        List<Floor> floors = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Floor floor = new Floor();
-            floor.id = "id" + i;
-            floor.name = "category " + i;
-            floor.order = "order " + i;
-            floor.displayType = "displayType " + i;
-            floor.view = "view " + i;
-            floor.argument = "argument " + i;
-            floor.element1 = "element1";
-            floor.element2 = "element2";
-            floor.contents = generate();
-            List<Message> messages = new ArrayList<>();
-            for (int k = 0; k < 5; k++) {
-                Message message = new Message();
-                message.id = "id" + k;
-                message.userId = "userId " + k;
-                message.avatar = "avatar " + k;
-                message.name = "name " + k;
-                message.content = "content" + k;
-                messages.add(message);
-            }
-            floor.messages = messages;
-            floors.add(floor);
+
+        if (lastModifyTime > (System.currentTimeMillis() - 1 * 60 * 1000)) {
+            resp.result = 1;
+            resp.message = "没有更新的数据了..";
+            return resp;
         }
+        List<Floor> floors = new ArrayList<>();
+        switch (columnId) {
+            case "0":
+                List<Content> contents1 = new ArrayList<>();
+                contents1.add(new Content(1, "飞屋环游记", Pic.PIC_BIG_1, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", null, null));
+                contents1.add(new Content(2, "叛逆的鲁路修第110话", Pic.PIC_BIG_2, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", null, null));
+                contents1.add(new Content(3, "少年派的奇幻漂流", Pic.PIC_BIG_3, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", null, null));
+                contents1.add(new Content(4, "海贼王第710话", Pic.PIC_BIG_4, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", null, null));
+                floors.add(new Floor(0, null, "排序", TemplateType.CAROUSEL, null, null, null, null, contents1, null));
+
+                List<Content> contents2 = new ArrayList<>();
+                contents2.add(new Content(0, "[CCTV5]世界杯战况", Pic.PIC_PROGRAM_1, ContentType.LIVE_PROGRAM, "频道ID", ViewType.LIVE_PLAYER, "频道播放地址", "9.6", "10000次"));
+                contents2.add(new Content(0, "[江苏卫视]舌尖上的中国", Pic.PIC_PROGRAM_3, ContentType.LIVE_PROGRAM, "频道ID", ViewType.LIVE_PLAYER, "频道播放地址", "9.6", "2000次"));
+                floors.add(new Floor(0, "直播", "排序", TemplateType.COUNT_TWO, ViewType.LIVE_MAIN, null, "CCTV5/江苏卫视", null, contents2, null));
+
+                List<Content> contents3 = new ArrayList<>();
+                contents3.add(new Content(0, "名侦探柯南", Pic.PIC_SMALL_1, ContentType.VOD_VIDEO, "节目ID", ViewType.VOD_PLAYER, "节目播放地址", "9.6", null));
+                contents3.add(new Content(0, "全职猎人", Pic.PIC_SMALL_2, ContentType.VOD_VIDEO, "节目ID", ViewType.VOD_PLAYER, "节目播放地址", "9.6", null));
+                floors.add(new Floor(0, "点播", "排序", TemplateType.COUNT_TWO, ViewType.VOD_MAIN, null, "精选/欧美/电视剧/娱乐", null, contents3, null));
+                break;
+            case "1":
+                List<Content> liveContents1 = new ArrayList<>();
+                liveContents1.add(new Content(1, "飞屋环游记", Pic.PIC_BIG_1, "直播节目类", "节目ID", ViewType.LIVE_PLAYER, "节目播放地址", null, null));
+                liveContents1.add(new Content(2, "叛逆的鲁路修第110话", Pic.PIC_BIG_2, "直播节目类", "节目ID", ViewType.LIVE_PLAYER, "节目播放地址", null, null));
+                liveContents1.add(new Content(3, "少年派的奇幻漂流", Pic.PIC_BIG_3, "直播节目类", "节目ID", ViewType.LIVE_PLAYER, "节目播放地址", null, null));
+                liveContents1.add(new Content(4, "海贼王第710话", Pic.PIC_BIG_4, "直播节目类", "节目ID", ViewType.LIVE_PLAYER, "节目播放地址", null, null));
+                floors.add(new Floor(0, null, "排序", TemplateType.CAROUSEL, null, null, null, null, liveContents1, null));
+
+                List<Content> liveContents2 = new ArrayList<>();
+                liveContents2.add(new Content(0, "巴西世界杯", Pic.PIC_PROGRAM_1, "点播视频类", "节目ID", ViewType.LIVE_PLAYER, "节目播放地址", "9.6", null));
+                liveContents2.add(new Content(0, "新闻30分", Pic.PIC_PROGRAM_2, "点播视频类", "节目ID", ViewType.LIVE_PLAYER, "节目播放地址", "9.6", null));
+                floors.add(new Floor(0, "精彩回看", "排序", TemplateType.COUNT_TWO, ViewType.LIVE_ALL_PROGRAM, null, "所有回看", null, liveContents2, null));
+
+                List<Content> liveContents3 = new ArrayList<>();
+                liveContents3.add(new Content(0, "湖南卫视", Pic.PIC_TV_1, "直播频道类", "频道ID", ViewType.LIVE_PLAYER, "频道播放地址", "9.6", "10000次"));
+                liveContents3.add(new Content(0, "湖北卫视", Pic.PIC_TV_2, "直播频道类", "频道ID", ViewType.LIVE_PLAYER, "频道播放地址", "9.6", "2000次"));
+                liveContents3.add(new Content(0, "江苏卫视", Pic.PIC_TV_3, "直播频道类", "频道ID", ViewType.LIVE_PLAYER, "频道播放地址", "9.6", "3000次"));
+                liveContents3.add(new Content(0, "东方卫视", Pic.PIC_TV_4, "直播频道类", "频道ID", ViewType.LIVE_PLAYER, "频道播放地址", "9.6", "5000次"));
+                floors.add(new Floor(0, "热门电视", "排序", TemplateType.COUNT_FOUR, ViewType.LIVE_ALL_PROGRAM, null, "所有电视", null, liveContents3, null));
+                break;
+            default:
+                List<Content> vodContents1 = new ArrayList<>();
+                vodContents1.add(new Content(1, "飞屋环游记", Pic.PIC_BIG_1, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", null, null));
+                vodContents1.add(new Content(2, "叛逆的鲁路修第110话", Pic.PIC_BIG_2, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", null, null));
+                vodContents1.add(new Content(3, "少年派的奇幻漂流", Pic.PIC_BIG_3, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", null, null));
+                vodContents1.add(new Content(4, "海贼王第710话", Pic.PIC_BIG_4, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", null, null));
+                floors.add(new Floor(0, null, "排序", TemplateType.CAROUSEL, null, null, null, null, vodContents1, null));
+
+                List<Content> vodContents2 = new ArrayList<>();
+                vodContents2.add(new Content(0, "霍比特人意外之旅", Pic.PIC_SMALL_6, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", "9.6", "10000次"));
+                vodContents2.add(new Content(0, "指环王", Pic.PIC_SMALL_7, ContentType.VOD_VIDEO, "视频ID", ViewType.LIVE_PLAYER, "视频播放地址", "9.6", "2000次"));
+                floors.add(new Floor(0, "电影", "排序", TemplateType.COUNT_TWO, null, null, "CCTV5/江苏卫视", null, vodContents2, null));
+
+                List<Content> vodContents3 = new ArrayList<>();
+                vodContents3.add(new Content(0, "名侦探柯南", Pic.PIC_SMALL_1, ContentType.VOD_TELEPALY, "电视剧ID", ViewType.VOD_PLAYER, "电视剧内容ID", null, null));
+                vodContents3.add(new Content(0, "全职猎人", Pic.PIC_SMALL_2, ContentType.VOD_TELEPALY, "电视剧ID", ViewType.VOD_PLAYER, "电视剧内容ID", null, null));
+                vodContents3.add(new Content(0, "乌龙派出所", Pic.PIC_SMALL_3, ContentType.VOD_TELEPALY, "电视剧ID", ViewType.VOD_PLAYER, "电视剧内容ID", null, null));
+                floors.add(new Floor(0, "电视剧", "排序", TemplateType.COUNT_THREE, null, null, "精选/欧美/电视剧/娱乐", null, vodContents3, null));
+
+                List<Content> vodContents4 = new ArrayList<>();
+                vodContents4.add(new Content(0, "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", "9.6", null));
+                vodContents4.add(new Content(0, "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VOD_VIDEO, "视频ID", ViewType.VOD_PLAYER, "视频播放地址", "9.6", null));
+                floors.add(new Floor(0, "动漫", "排序", TemplateType.COUNT_TWO, null, null, null, null, vodContents4, null));
+                break;
+        }
+
         resp.floors = floors;
         resp.result = 0;
         resp.message = "success";
+        resp.lastModifyTime = System.currentTimeMillis();
         return resp;
     }
 
@@ -365,19 +426,9 @@ public class OttController {
 
     private List<Content> generate() {
         List<Content> contents = new ArrayList<>();
-        for (int j = 0; j < 5; j++) {
-            Content content = new Content();
-            content.id = "id" + j;
-            content.name = "name " + j;
-            content.poster = "poster" + j;
-            content.type = "type " + j;
-            content.tableId = "tableId " + j;
-            content.view = "view " + j;
-            content.argument = "argument " + j;
-            content.element1 = "element1";
-            content.element2 = "element2";
-            contents.add(content);
-        }
+        contents.add(new Content(0, "叛逆的鲁路修第10话", Pic.PIC_BIG_1, "点播视频类", "视频表的记录ID", "跳转到点播播放页面", "视频播放地址", "9.6", "预留文本2"));
+        contents.add(new Content(0, "叛逆的鲁路修第10话", Pic.PIC_BIG_1, "点播视频类", "视频表的记录ID", "跳转到点播播放页面", "视频播放地址", "9.6", "预留文本2"));
+        contents.add(new Content(0, "叛逆的鲁路修第10话", Pic.PIC_BIG_1, "点播视频类", "视频表的记录ID", "跳转到点播播放页面", "视频播放地址", "9.6", "预留文本2"));
         return contents;
     }
 

@@ -12,6 +12,7 @@ public class GetFloorsResp {
     public int result;
     public String message;
     public List<Floor> floors;
+    public long lastModifyTime;
 
     @Override
     public String toString() {
@@ -19,6 +20,7 @@ public class GetFloorsResp {
                 "result=" + result +
                 ", message='" + message + '\'' +
                 ", floors=" + floors +
+                ", lastModifyTime=" + lastModifyTime +
                 '}';
     }
 }
