@@ -503,14 +503,14 @@ public class OttController {
         List<Collect> collects = new ArrayList<>();
         switch (contentType) {
             case ContentType.VOD_TELEPALY:
-                collects.add(new Collect("1", ContentType.VOD_TELEPALY, "31", "名侦探柯南", null, null, null, null, null));
-                collects.add(new Collect("2", ContentType.VOD_TELEPALY, "32", "全职猎人", null, null, null, null, null));
-                collects.add(new Collect("3", ContentType.VOD_TELEPALY, "33", "乌龙派出所", null, null, null, null, null));
+                collects.add(new Collect("1", ContentType.VOD_TELEPALY, "31", "名侦探柯南", Pic.PIC_SMALL_1, null, null, null, null));
+                collects.add(new Collect("2", ContentType.VOD_TELEPALY, "32", "全职猎人", Pic.PIC_SMALL_2, null, null, null, null));
+                collects.add(new Collect("3", ContentType.VOD_TELEPALY, "33", "乌龙派出所", Pic.PIC_SMALL_3, null, null, null, null));
                 break;
             case ContentType.VOD_VIDEO:
-                collects.add(new Collect("1", ContentType.VOD_VIDEO, "21", "霍比特人意外之旅", null, null, null, null, null));
-                collects.add(new Collect("2", ContentType.VOD_VIDEO, "22", "指环王", null, null, null, null, null));
-                collects.add(new Collect("3", ContentType.VOD_VIDEO, "23", "幽游白书", null, null, null, null, null));
+                collects.add(new Collect("1", ContentType.VOD_VIDEO, "21", "霍比特人意外之旅", Pic.PIC_SMALL_6, null, null, null, null));
+                collects.add(new Collect("2", ContentType.VOD_VIDEO, "22", "指环王", Pic.PIC_SMALL_7, null, null, null, null));
+                collects.add(new Collect("3", ContentType.VOD_VIDEO, "23", "幽游白书", Pic.PIC_SMALL_4, null, null, null, null));
                 break;
             default:
                 break;
@@ -542,14 +542,14 @@ public class OttController {
         List<Record> records = new ArrayList<>();
         switch (contentType) {
             case ContentType.VOD_TELEPALY:
-                records.add(new Record("1", ContentType.VOD_TELEPALY, "31", "6", "名侦探柯南", null, null, null, null, null));
-                records.add(new Record("2", ContentType.VOD_TELEPALY, "32", "2", "全职猎人", null, null, null, null, null));
-                records.add(new Record("3", ContentType.VOD_TELEPALY, "33", "7", "乌龙派出所", null, null, null, null, null));
+                records.add(new Record("1", ContentType.VOD_TELEPALY, "31", "6", "名侦探柯南", Pic.PIC_SMALL_1, null, null, null, null));
+                records.add(new Record("2", ContentType.VOD_TELEPALY, "32", "2", "全职猎人", Pic.PIC_SMALL_2, null, null, null, null));
+                records.add(new Record("3", ContentType.VOD_TELEPALY, "33", "7", "乌龙派出所", Pic.PIC_SMALL_3, null, null, null, null));
                 break;
             case ContentType.VOD_VIDEO:
-                records.add(new Record("1", ContentType.VOD_VIDEO, "21", "" + (25 * 60 + 17) * 1000, "霍比特人意外之旅", null, null, null, null, null));
-                records.add(new Record("2", ContentType.VOD_VIDEO, "22", "" + (25 * 60 + 17) * 1000, "指环王", null, null, null, null, null));
-                records.add(new Record("3", ContentType.VOD_VIDEO, "23", "" + (10 * 60 + 43) * 1000, "幽游白书", null, null, null, null, null));
+                records.add(new Record("1", ContentType.VOD_VIDEO, "21", "" + (25 * 60 + 17) * 1000, "霍比特人意外之旅", Pic.PIC_SMALL_6, null, null, null, null));
+                records.add(new Record("2", ContentType.VOD_VIDEO, "22", "" + (25 * 60 + 17) * 1000, "指环王", Pic.PIC_SMALL_7, null, null, null, null));
+                records.add(new Record("3", ContentType.VOD_VIDEO, "23", "" + (10 * 60 + 43) * 1000, "幽游白书", Pic.PIC_SMALL_4, null, null, null, null));
                 break;
             default:
                 break;
