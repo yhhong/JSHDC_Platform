@@ -8,7 +8,7 @@ import java.util.List;
  * 获取关联推荐
  * Created by yinghuihong on 16/1/11.
  */
-public class GetRelevantRecommendResp {
+public class GetRecommendContentsResp {
 
     public int result;
     public String message;
@@ -16,7 +16,7 @@ public class GetRelevantRecommendResp {
 
     @Override
     public String toString() {
-        return "GetRelevantRecommendResp{" +
+        return "GetRecommendContentsResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
                 ", contents=" + contents +

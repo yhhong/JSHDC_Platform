@@ -25,7 +25,7 @@ public class OttController {
                                      @RequestParam long lastModifyTime) {
         GetColumnsResp resp = new GetColumnsResp();
 
-        if (lastModifyTime > (System.currentTimeMillis() - 1 * 60 * 1000)) {
+        if (lastModifyTime > (System.currentTimeMillis() - 60 * 1000)) {
             resp.result = 1;
             resp.message = "没有更新的数据了..";
             return resp;
@@ -435,58 +435,11 @@ public class OttController {
         return resp;
     }
 
-//    @RequestMapping(value = "/getVodTags")
-//    public GetVodTagsResp getVodTags(@RequestParam String userToken) {
-//        GetVodTagsResp resp = new GetVodTagsResp();
-//        List<VodTag> vodTags = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            VodTag vodTag = new VodTag();
-//            vodTag.id = "" + i;
-//            vodTag.name = "vod tag " + i;
-//            vodTags.add(vodTag);
-//        }
-//        resp.tags = vodTags;
-//        resp.result = 0;
-//        resp.message = "success";
-//        return resp;
-//    }
-
-//  @RequestMapping(value = "/getVodContents")
-//  public GetVodContentsResp getVodContents(@RequestBody(required = false) String json) {
-//    GetVodContentsResp resp = new GetVodContentsResp();
-//    List<VodContent> vodContents = new ArrayList<>();
-//    for (int i = 0; i < 10; i++) {
-//      VodContent vodContent = new VodContent();
-//      vodContent.id = "" + i;
-//      vodContent.playId = "";
-//      vodContent.name = "vod content " + i;
-//      vodContent.poster = "";
-//      vodContent.director = "";
-//      vodContent.actors = "";
-//      vodContent.description = "";
-//      vodContent.score = "";
-//      vodContent.showTime = "";
-//      vodContent.total = "";
-//      vodContent.updateCount = "";
-//      vodContent.playCount = "";
-//      vodContent.time = "";
-//      vodContent.superId = "";
-//      vodContent.contentType = "";
-//      vodContent.tags = "";
-//      vodContents.add(vodContent);
-//    }
-//    resp.data = resp.new Data();
-//    resp.data.contents = vodContents;
-//    resp.result = 0;
-//    resp.message = "success";
-//    return resp;
-//  }
-
-    @RequestMapping(value = "/getRelevantRecommend")
-    public GetRelevantRecommendResp getRelevantRecommend(@RequestParam String userToken,
+    @RequestMapping(value = "/getRecommendContents")
+    public GetRecommendContentsResp getRecommendContents(@RequestParam String userToken,
                                                          @RequestParam String contentType,
                                                          @RequestParam String contentTableId) {
-        GetRelevantRecommendResp resp = new GetRelevantRecommendResp();
+        GetRecommendContentsResp resp = new GetRecommendContentsResp();
         List<Content> contents = new ArrayList<>();
         switch (contentType) {// 推荐相同内容类型的内容
             case ContentType.LIVE_CHANNEL:
@@ -521,78 +474,90 @@ public class OttController {
         return resp;
     }
 
-    @RequestMapping(value = "/postCollectVideo")
-    public PostCollectVideoResp postCollectVideo(@RequestParam String userToken,
-                                                 @RequestParam String videoId) {
-        PostCollectVideoResp resp = new PostCollectVideoResp();
+    @RequestMapping(value = "/postCollect")
+    public PostCollectResp postCollect(@RequestParam String userToken,
+                                       @RequestParam String contentType,
+                                       @RequestParam String contentTableId) {
+        PostCollectResp resp = new PostCollectResp();
         resp.result = 0;
         resp.message = "success";
         return resp;
     }
 
-    @RequestMapping(value = "/deleteCollectVideo")
-    public DeleteCollectVideoResp deleteCollectVideo(@RequestParam String userToken,
-                                                     @RequestParam String videoId) {
-        DeleteCollectVideoResp resp = new DeleteCollectVideoResp();
+    @RequestMapping(value = "/deleteCollect")
+    public DeleteCollectResp deleteCollect(@RequestParam String userToken,
+                                           @RequestParam String contentType,
+                                           @RequestParam String contentTableId) {
+        DeleteCollectResp resp = new DeleteCollectResp();
         resp.result = 0;
         resp.message = "success";
         return resp;
     }
 
-    @RequestMapping(value = "/getCollectVideos")
-    public GetCollectVideosResp getCollectVideos(@RequestParam String userToken,
-                                                 @RequestParam(required = false, defaultValue = "0") int start,
-                                                 @RequestParam(required = false, defaultValue = "20") int limit) {
-        GetCollectVideosResp resp = new GetCollectVideosResp();
-        List<Video> videos = new ArrayList<>();
-        videos.add(new Video("8", ContentUrl.MOVE8, "63_芈月传", null, null, null, null, "7.7", null, "42545次", "97分钟"));
-        videos.add(new Video("9", ContentUrl.MOVE9, "十七岁", null, null, null, null, "8.9", null, "1345次", "125分钟"));
-        videos.add(new Video("10", ContentUrl.MOVE10, "解救吾先生", null, null, null, null, "9.1", null, "26445次", "153分钟"));
-        resp.videos = videos;
+    @RequestMapping(value = "/getCollects")
+    public GetCollectsResp getCollects(@RequestParam String userToken,
+                                       @RequestParam String contentType,
+                                       @RequestParam(required = false, defaultValue = "0") int start,
+                                       @RequestParam(required = false, defaultValue = "20") int limit) {
+        GetCollectsResp resp = new GetCollectsResp();
+        List<Collect> collects = new ArrayList<>();
+        switch (contentType) {
+            case ContentType.VOD_TELEPALY:
+                collects.add(new Collect("1", ContentType.VOD_TELEPALY, "31", "名侦探柯南", null, null, null, null, null));
+                collects.add(new Collect("2", ContentType.VOD_TELEPALY, "32", "全职猎人", null, null, null, null, null));
+                collects.add(new Collect("3", ContentType.VOD_TELEPALY, "33", "乌龙派出所", null, null, null, null, null));
+                break;
+            case ContentType.VOD_VIDEO:
+                collects.add(new Collect("1", ContentType.VOD_VIDEO, "21", "霍比特人意外之旅", null, null, null, null, null));
+                collects.add(new Collect("2", ContentType.VOD_VIDEO, "22", "指环王", null, null, null, null, null));
+                collects.add(new Collect("3", ContentType.VOD_VIDEO, "23", "幽游白书", null, null, null, null, null));
+                break;
+            default:
+                break;
+        }
+        resp.collects = collects;
         resp.result = 0;
         resp.message = "success";
         return resp;
     }
 
-    @RequestMapping(value = "/postVideoPlayRecord")
-    public PostVideoPlayRecordResp postVideoPlayRecord(@RequestParam String userToken,
-                                                       @RequestParam String videoId,
-                                                       @RequestParam long breakPoint) {
+    @RequestMapping(value = "/postRecord")
+    public PostRecordResp postRecord(@RequestParam String userToken,
+                                     @RequestParam String contentType,
+                                     @RequestParam String contentTableId,
+                                     @RequestParam String record) {
         // save a record into Record Table
-        PostVideoPlayRecordResp resp = new PostVideoPlayRecordResp();
+        PostRecordResp resp = new PostRecordResp();
         resp.result = 0;
         resp.message = "success";
         return resp;
     }
 
-    @RequestMapping(value = "/getVideoPlayRecords")
-    public GetVideoPlayRecordsResp getVideoPlayRecords(@RequestParam String userToken,
-                                                       @RequestParam(required = false, defaultValue = "0") int start,
-                                                       @RequestParam(required = false, defaultValue = "20") int limit) {
-        GetVideoPlayRecordsResp resp = new GetVideoPlayRecordsResp();
-        List<PlayRecord> playRecords = new ArrayList<>();
-        playRecords.add(new PlayRecord("27", "111", "1", (15 * 60 + 59) * 1000, "叛逆的鲁路修第10话", Pic.PIC_BIG_1));
-        playRecords.add(new PlayRecord("28", "111", "1", (25 * 60 + 17) * 1000, "全职猎人", Pic.PIC_BIG_2));
-        playRecords.add(new PlayRecord("29", "111", "1", (10 * 60 + 43) * 1000, "海贼王", Pic.PIC_BIG_3));
-        resp.playRecords = playRecords;
+    @RequestMapping(value = "/getRecords")
+    public GetRecordsResp getRecords(@RequestParam String userToken,
+                                     @RequestParam String contentType,
+                                     @RequestParam(required = false, defaultValue = "0") int start,
+                                     @RequestParam(required = false, defaultValue = "20") int limit) {
+        GetRecordsResp resp = new GetRecordsResp();
+        List<Record> records = new ArrayList<>();
+        switch (contentType) {
+            case ContentType.VOD_TELEPALY:
+                records.add(new Record("1", ContentType.VOD_TELEPALY, "31", "6", "名侦探柯南", null, null, null, null, null));
+                records.add(new Record("2", ContentType.VOD_TELEPALY, "32", "2", "全职猎人", null, null, null, null, null));
+                records.add(new Record("3", ContentType.VOD_TELEPALY, "33", "7", "乌龙派出所", null, null, null, null, null));
+                break;
+            case ContentType.VOD_VIDEO:
+                records.add(new Record("1", ContentType.VOD_VIDEO, "21", "" + (25 * 60 + 17) * 1000, "霍比特人意外之旅", null, null, null, null, null));
+                records.add(new Record("2", ContentType.VOD_VIDEO, "22", "" + (25 * 60 + 17) * 1000, "指环王", null, null, null, null, null));
+                records.add(new Record("3", ContentType.VOD_VIDEO, "23", "" + (10 * 60 + 43) * 1000, "幽游白书", null, null, null, null, null));
+                break;
+            default:
+                break;
+        }
+        resp.records = records;
         resp.result = 0;
         resp.message = "success";
         return resp;
     }
 
-    //@RequestMapping(value = "/columns2", method = RequestMethod.POST) public GetColumnsResp columns(
-    //    @RequestParam(value = "lastModifyTime", required = true) Long lastModifyTime) {
-    //  List<Column> columns = new ArrayList<>();
-    //  for (int i = 0; i < 10; i++) {
-    //    Column column = new Column();
-    //    column.id = String.valueOf(i);
-    //    column.name = "column" + i;
-    //    column.status = "0";
-    //    columns.add(column);
-    //  }
-    //  GetColumnsResp resp = new GetColumnsResp();
-    //  resp.columns = columns;
-    //  resp.lastModifyTime = System.currentTimeMillis();
-    //  return resp;
-    //}
 }

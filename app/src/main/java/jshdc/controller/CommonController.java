@@ -80,15 +80,4 @@ public class CommonController {
         return resp;
     }
 
-    /**
-     * 密码修改(暂不需要)
-     */
-    @RequestMapping(value = "/modifyPassword")
-    public ModifyPasswordResp modifyPassword(@RequestParam String phone, @RequestParam String captcha, @RequestParam String password) {
-        //TODO verify and modify
-        ModifyPasswordResp resp = new ModifyPasswordResp();
-        resp.result = 0;
-        resp.message = "success";
-        return resp;
-    }
 }
