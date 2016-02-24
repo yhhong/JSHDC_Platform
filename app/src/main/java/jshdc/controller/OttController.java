@@ -21,7 +21,8 @@ import java.util.List;
 public class OttController {
 
     @RequestMapping(value = "/getColumns")
-    public GetColumnsResp getColumns(@RequestParam String userToken, @RequestParam long lastModifyTime) {
+    public GetColumnsResp getColumns(@RequestParam String userToken,
+                                     @RequestParam long lastModifyTime) {
         GetColumnsResp resp = new GetColumnsResp();
 
         if (lastModifyTime > (System.currentTimeMillis() - 1 * 60 * 1000)) {
@@ -48,7 +49,9 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getFloors")
-    public GetFloorsResp getFloors(@RequestParam String userToken, @RequestParam String columnId, @RequestParam long lastModifyTime) {
+    public GetFloorsResp getFloors(@RequestParam String userToken,
+                                   @RequestParam String columnId,
+                                   @RequestParam long lastModifyTime) {
         GetFloorsResp resp = new GetFloorsResp();
 
         if (lastModifyTime > (System.currentTimeMillis() - 1 * 60 * 1000)) {
@@ -67,13 +70,13 @@ public class OttController {
                 floors.add(new Floor("0", null, "排序", TemplateType.CAROUSEL, null, null, null, null, contents1, null));
 
                 List<Content> contents2 = new ArrayList<>();
-                contents2.add(new Content("0", "[CCTV5]世界杯战况", Pic.PIC_PROGRAM_1, ContentType.LIVE_PROGRAM, "频道ID", "频道播放地址", "9.6", "10000次"));
-                contents2.add(new Content("0", "[江苏卫视]舌尖上的中国", Pic.PIC_PROGRAM_3, ContentType.LIVE_PROGRAM, "频道ID", "频道播放地址", "9.6", "2000次"));
+                contents2.add(new Content("5", "[CCTV5]世界杯战况", Pic.PIC_PROGRAM_1, ContentType.LIVE_PROGRAM, "频道ID", "频道播放地址", "9.6", "10000次"));
+                contents2.add(new Content("6", "[江苏卫视]舌尖上的中国", Pic.PIC_PROGRAM_3, ContentType.LIVE_PROGRAM, "频道ID", "频道播放地址", "9.6", "2000次"));
                 floors.add(new Floor("0", "直播", "排序", TemplateType.COUNT_TWO, ViewType.LIVE_MAIN, null, "CCTV5/江苏卫视", null, contents2, null));
 
                 List<Content> contents3 = new ArrayList<>();
-                contents3.add(new Content("0", "名侦探柯南", Pic.PIC_SMALL_1, ContentType.VOD_VIDEO, "节目ID", "节目播放地址", "9.6", null));
-                contents3.add(new Content("0", "全职猎人", Pic.PIC_SMALL_2, ContentType.VOD_VIDEO, "节目ID", "节目播放地址", "9.6", null));
+                contents3.add(new Content("7", "名侦探柯南", Pic.PIC_SMALL_1, ContentType.VOD_VIDEO, "节目ID", "节目播放地址", "9.6", null));
+                contents3.add(new Content("8", "全职猎人", Pic.PIC_SMALL_2, ContentType.VOD_VIDEO, "节目ID", "节目播放地址", "9.6", null));
                 floors.add(new Floor("0", "点播", "排序", TemplateType.COUNT_TWO, ViewType.VOD_MAIN, null, "精选/欧美/电视剧/娱乐", null, contents3, null));
                 break;
             case "1":
@@ -85,15 +88,15 @@ public class OttController {
                 floors.add(new Floor("0", null, "排序", TemplateType.CAROUSEL, null, null, null, null, liveContents1, null));
 
                 List<Content> liveContents2 = new ArrayList<>();
-                liveContents2.add(new Content("0", "巴西世界杯", Pic.PIC_PROGRAM_1, "点播视频类", "节目ID", "节目播放地址", "9.6", null));
-                liveContents2.add(new Content("0", "新闻30分", Pic.PIC_PROGRAM_2, "点播视频类", "节目ID", "节目播放地址", "9.6", null));
+                liveContents2.add(new Content("9", "巴西世界杯", Pic.PIC_PROGRAM_1, "点播视频类", "节目ID", "节目播放地址", "9.6", null));
+                liveContents2.add(new Content("10", "新闻30分", Pic.PIC_PROGRAM_2, "点播视频类", "节目ID", "节目播放地址", "9.6", null));
                 floors.add(new Floor("0", "精彩回看", "排序", TemplateType.COUNT_TWO, ViewType.LIVE_ALL_PROGRAM, null, "所有回看", null, liveContents2, null));
 
                 List<Content> liveContents3 = new ArrayList<>();
-                liveContents3.add(new Content("0", "湖南卫视", Pic.PIC_TV_1, "直播频道类", "频道ID", "频道播放地址", "9.6", "10000次"));
-                liveContents3.add(new Content("0", "湖北卫视", Pic.PIC_TV_2, "直播频道类", "频道ID", "频道播放地址", "9.6", "2000次"));
-                liveContents3.add(new Content("0", "江苏卫视", Pic.PIC_TV_3, "直播频道类", "频道ID", "频道播放地址", "9.6", "3000次"));
-                liveContents3.add(new Content("0", "东方卫视", Pic.PIC_TV_4, "直播频道类", "频道ID", "频道播放地址", "9.6", "5000次"));
+                liveContents3.add(new Content("11", "湖南卫视", Pic.PIC_TV_1, "直播频道类", "频道ID", "频道播放地址", "9.6", "10000次"));
+                liveContents3.add(new Content("12", "湖北卫视", Pic.PIC_TV_2, "直播频道类", "频道ID", "频道播放地址", "9.6", "2000次"));
+                liveContents3.add(new Content("13", "江苏卫视", Pic.PIC_TV_3, "直播频道类", "频道ID", "频道播放地址", "9.6", "3000次"));
+                liveContents3.add(new Content("14", "东方卫视", Pic.PIC_TV_4, "直播频道类", "频道ID", "频道播放地址", "9.6", "5000次"));
                 floors.add(new Floor("0", "热门电视", "排序", TemplateType.COUNT_FOUR, ViewType.LIVE_ALL_PROGRAM, null, "所有电视", null, liveContents3, null));
                 break;
             default:
@@ -105,19 +108,19 @@ public class OttController {
                 floors.add(new Floor("0", null, "排序", TemplateType.CAROUSEL, null, null, null, null, vodContents1, null));
 
                 List<Content> vodContents2 = new ArrayList<>();
-                vodContents2.add(new Content("0", "霍比特人意外之旅", Pic.PIC_SMALL_6, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", "10000次"));
-                vodContents2.add(new Content("0", "指环王", Pic.PIC_SMALL_7, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", "2000次"));
+                vodContents2.add(new Content("21", "霍比特人意外之旅", Pic.PIC_SMALL_6, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", "10000次"));
+                vodContents2.add(new Content("22", "指环王", Pic.PIC_SMALL_7, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", "2000次"));
                 floors.add(new Floor("0", "电影", "排序", TemplateType.COUNT_TWO, null, null, null, null, vodContents2, null));
 
                 List<Content> vodContents3 = new ArrayList<>();
-                vodContents3.add(new Content("0", "名侦探柯南", Pic.PIC_SMALL_1, ContentType.VOD_TELEPALY, "电视剧ID", "电视剧内容ID", null, null));
-                vodContents3.add(new Content("0", "全职猎人", Pic.PIC_SMALL_2, ContentType.VOD_TELEPALY, "电视剧ID", "电视剧内容ID", null, null));
-                vodContents3.add(new Content("0", "乌龙派出所", Pic.PIC_SMALL_3, ContentType.VOD_TELEPALY, "电视剧ID", "电视剧内容ID", null, null));
+                vodContents3.add(new Content("31", "名侦探柯南", Pic.PIC_SMALL_1, ContentType.VOD_TELEPALY, "电视剧ID", "电视剧内容ID", null, null));
+                vodContents3.add(new Content("32", "全职猎人", Pic.PIC_SMALL_2, ContentType.VOD_TELEPALY, "电视剧ID", "电视剧内容ID", null, null));
+                vodContents3.add(new Content("33", "乌龙派出所", Pic.PIC_SMALL_3, ContentType.VOD_TELEPALY, "电视剧ID", "电视剧内容ID", null, null));
                 floors.add(new Floor("0", "电视剧", "排序", TemplateType.COUNT_THREE, null, null, null, null, vodContents3, null));
 
                 List<Content> vodContents4 = new ArrayList<>();
-                vodContents4.add(new Content("0", "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
-                vodContents4.add(new Content("0", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
+                vodContents4.add(new Content("23", "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
+                vodContents4.add(new Content("24", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
                 floors.add(new Floor("0", "动漫", "排序", TemplateType.COUNT_TWO, null, null, null, null, vodContents4, null));
                 break;
         }
@@ -130,12 +133,13 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getContents")
-    public GetContentsResp getContents(@RequestParam String userToken, @RequestParam String floorId,
+    public GetContentsResp getContents(@RequestParam String userToken,
+                                       @RequestParam String floorId,
                                        @RequestParam(required = false, defaultValue = "0") int start,
                                        @RequestParam(required = false, defaultValue = "20") int limit) {
         List<Content> contents = new ArrayList<>();
-        contents.add(new Content("0", "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
-        contents.add(new Content("0", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
+        contents.add(new Content("23", "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
+        contents.add(new Content("24", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
 
         GetContentsResp resp = new GetContentsResp();
         resp.contents = contents;
@@ -145,7 +149,8 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getChannelDetail")
-    public GetChannelDetailResp getChannelDetail(@RequestParam String userToken, @RequestParam String channelId) {
+    public GetChannelDetailResp getChannelDetail(@RequestParam String userToken,
+                                                 @RequestParam String channelId) {
         GetChannelDetailResp resp = new GetChannelDetailResp();
         Channel channel;
         switch (channelId) {
@@ -188,7 +193,8 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getProgramDetail")
-    public GetProgramDetailResp getProgramDetail(@RequestParam String userToken, @RequestParam String programId) {
+    public GetProgramDetailResp getProgramDetail(@RequestParam String userToken,
+                                                 @RequestParam String programId) {
         GetProgramDetailResp resp = new GetProgramDetailResp();
         Program program;
         switch (programId) {
@@ -210,7 +216,8 @@ public class OttController {
 
 
     @RequestMapping(value = "/getTeleplayDetail")
-    public GetTeleplayDetailResp getTeleplayDetail(@RequestParam String userToken, @RequestParam String teleplayId) {
+    public GetTeleplayDetailResp getTeleplayDetail(@RequestParam String userToken,
+                                                   @RequestParam String teleplayId) {
         GetTeleplayDetailResp resp = new GetTeleplayDetailResp();
         Teleplay teleplay;
         switch (teleplayId) {
@@ -234,7 +241,8 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getTeleplayVideos")
-    public GetTeleplayVideosResp getTeleplayVideos(@RequestParam String userToken, @RequestParam String teleplayId) {
+    public GetTeleplayVideosResp getTeleplayVideos(@RequestParam String userToken,
+                                                   @RequestParam String teleplayId) {
         GetTeleplayVideosResp resp = new GetTeleplayVideosResp();
         List<Video> videos = new ArrayList<>();
         switch (teleplayId) {
@@ -261,7 +269,8 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getVideoDetail")
-    public GetVideoDetailResp getVideoDetail(@RequestParam String userToken, @RequestParam String videoId) {
+    public GetVideoDetailResp getVideoDetail(@RequestParam String userToken,
+                                             @RequestParam String videoId) {
         GetVideoDetailResp resp = new GetVideoDetailResp();
         Video video;
         switch (videoId) {
@@ -325,7 +334,8 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getChannels")
-    public GetChannelsResp getChannels(@RequestParam String userToken, String channelTagId) {
+    public GetChannelsResp getChannels(@RequestParam String userToken,
+                                       @RequestParam String channelTagId) {
         GetChannelsResp resp = new GetChannelsResp();
         List<Channel> channels = new ArrayList<>();
         switch (channelTagId) {
@@ -392,7 +402,10 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getChannelPrograms")
-    public GetProgramsResp getChannelPrograms(@RequestParam String userToken, String channelId, long startTime, long endTime) {
+    public GetProgramsResp getChannelPrograms(@RequestParam String userToken,
+                                              @RequestParam String channelId,
+                                              @RequestParam long startTime,
+                                              @RequestParam long endTime) {
         GetProgramsResp resp = new GetProgramsResp();
         List<Program> programs = new ArrayList<>();
         switch (channelId) {
@@ -470,7 +483,9 @@ public class OttController {
 //  }
 
     @RequestMapping(value = "/getRelevantRecommend")
-    public GetRelevantRecommendResp getRelevantRecommend(@RequestParam String userToken, String contentType, String contentTableId) {
+    public GetRelevantRecommendResp getRelevantRecommend(@RequestParam String userToken,
+                                                         @RequestParam String contentType,
+                                                         @RequestParam String contentTableId) {
         GetRelevantRecommendResp resp = new GetRelevantRecommendResp();
         List<Content> contents = new ArrayList<>();
         switch (contentType) {// 推荐相同内容类型的内容
@@ -480,8 +495,8 @@ public class OttController {
             case ContentType.VOD_VIDEO:
             default:
                 // TODO 再根据contentTableId进行相关内容列表推荐;或者通过EPG;如分析contentTableId对应的标签,推荐相同标签的内容
-                contents.add(new Content("0", "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
-                contents.add(new Content("0", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
+                contents.add(new Content("23", "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
+                contents.add(new Content("24", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
                 break;
         }
         resp.contents = contents;
@@ -491,12 +506,13 @@ public class OttController {
     }
 
     @RequestMapping(value = "/search")
-    public SearchResp search(@RequestParam String userToken, @RequestParam String text,
+    public SearchResp search(@RequestParam String userToken,
+                             @RequestParam String text,
                              @RequestParam(required = false, defaultValue = "0") int start,
                              @RequestParam(required = false, defaultValue = "20") int limit) {
         List<Content> contents = new ArrayList<>();
-        contents.add(new Content("0", "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
-        contents.add(new Content("0", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
+        contents.add(new Content("23", "幽游白书", Pic.PIC_SMALL_4, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
+        contents.add(new Content("24", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VOD_VIDEO, "视频ID", "视频播放地址", "9.6", null));
 
         SearchResp resp = new SearchResp();
         resp.contents = contents;
@@ -506,7 +522,8 @@ public class OttController {
     }
 
     @RequestMapping(value = "/postCollectVideo")
-    public PostCollectVideoResp postCollectVideo(@RequestParam String userToken, @RequestParam String videoId) {
+    public PostCollectVideoResp postCollectVideo(@RequestParam String userToken,
+                                                 @RequestParam String videoId) {
         PostCollectVideoResp resp = new PostCollectVideoResp();
         resp.result = 0;
         resp.message = "success";
@@ -514,7 +531,8 @@ public class OttController {
     }
 
     @RequestMapping(value = "/deleteCollectVideo")
-    public DeleteCollectVideoResp deleteCollectVideo(@RequestParam String userToken, @RequestParam String videoId) {
+    public DeleteCollectVideoResp deleteCollectVideo(@RequestParam String userToken,
+                                                     @RequestParam String videoId) {
         DeleteCollectVideoResp resp = new DeleteCollectVideoResp();
         resp.result = 0;
         resp.message = "success";
@@ -537,7 +555,9 @@ public class OttController {
     }
 
     @RequestMapping(value = "/postVideoPlayRecord")
-    public PostVideoPlayRecordResp postVideoPlayRecord(@RequestParam String userToken, @RequestParam String videoId, @RequestParam long breakpoint) {
+    public PostVideoPlayRecordResp postVideoPlayRecord(@RequestParam String userToken,
+                                                       @RequestParam String videoId,
+                                                       @RequestParam long breakPoint) {
         // save a record into Record Table
         PostVideoPlayRecordResp resp = new PostVideoPlayRecordResp();
         resp.result = 0;
@@ -551,9 +571,9 @@ public class OttController {
                                                        @RequestParam(required = false, defaultValue = "20") int limit) {
         GetVideoPlayRecordsResp resp = new GetVideoPlayRecordsResp();
         List<PlayRecord> playRecords = new ArrayList<>();
-        playRecords.add(new PlayRecord("0", "111", "1", (15 * 60 + 59) * 1000, "叛逆的鲁路修第10话", Pic.PIC_BIG_1));
-        playRecords.add(new PlayRecord("0", "111", "1", (25 * 60 + 17) * 1000, "全职猎人", Pic.PIC_BIG_2));
-        playRecords.add(new PlayRecord("0", "111", "1", (10 * 60 + 43) * 1000, "海贼王", Pic.PIC_BIG_3));
+        playRecords.add(new PlayRecord("27", "111", "1", (15 * 60 + 59) * 1000, "叛逆的鲁路修第10话", Pic.PIC_BIG_1));
+        playRecords.add(new PlayRecord("28", "111", "1", (25 * 60 + 17) * 1000, "全职猎人", Pic.PIC_BIG_2));
+        playRecords.add(new PlayRecord("29", "111", "1", (10 * 60 + 43) * 1000, "海贼王", Pic.PIC_BIG_3));
         resp.playRecords = playRecords;
         resp.result = 0;
         resp.message = "success";
