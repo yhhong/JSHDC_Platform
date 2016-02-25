@@ -54,7 +54,7 @@ public class OttController {
                                    @RequestParam long lastModifyTime) {
         GetFloorsResp resp = new GetFloorsResp();
 
-        if (lastModifyTime > (System.currentTimeMillis() - 1 * 60 * 1000)) {
+        if (lastModifyTime > (System.currentTimeMillis() - 60 * 1000)) {
             resp.result = 1;
             resp.message = "没有更新的数据了..";
             return resp;
@@ -81,22 +81,22 @@ public class OttController {
                 break;
             case "1":
                 List<Content> liveContents1 = new ArrayList<>();
-                liveContents1.add(new Content("1", "飞屋环游记", Pic.PIC_BIG_1, "直播节目类", "节目ID", "节目播放地址", null, null));
-                liveContents1.add(new Content("2", "叛逆的鲁路修第110话", Pic.PIC_BIG_2, "直播节目类", "节目ID", "节目播放地址", null, null));
-                liveContents1.add(new Content("3", "少年派的奇幻漂流", Pic.PIC_BIG_3, "直播节目类", "节目ID", "节目播放地址", null, null));
-                liveContents1.add(new Content("4", "海贼王第710话", Pic.PIC_BIG_4, "直播节目类", "节目ID", "节目播放地址", null, null));
+                liveContents1.add(new Content("1", "飞屋环游记", Pic.PIC_BIG_1, ContentType.LIVE_PROGRAM, "节目ID", "节目播放地址", null, null));
+                liveContents1.add(new Content("2", "叛逆的鲁路修第110话", Pic.PIC_BIG_2, ContentType.LIVE_PROGRAM, "节目ID", "节目播放地址", null, null));
+                liveContents1.add(new Content("3", "少年派的奇幻漂流", Pic.PIC_BIG_3, ContentType.LIVE_PROGRAM, "节目ID", "节目播放地址", null, null));
+                liveContents1.add(new Content("4", "海贼王第710话", Pic.PIC_BIG_4, ContentType.LIVE_PROGRAM, "节目ID", "节目播放地址", null, null));
                 floors.add(new Floor("0", null, "排序", TemplateType.CAROUSEL, null, null, null, null, liveContents1, null));
 
                 List<Content> liveContents2 = new ArrayList<>();
-                liveContents2.add(new Content("9", "巴西世界杯", Pic.PIC_PROGRAM_1, "点播视频类", "节目ID", "节目播放地址", "9.6", null));
-                liveContents2.add(new Content("10", "新闻30分", Pic.PIC_PROGRAM_2, "点播视频类", "节目ID", "节目播放地址", "9.6", null));
+                liveContents2.add(new Content("9", "巴西世界杯", Pic.PIC_PROGRAM_1, ContentType.LIVE_PROGRAM, "节目ID", "节目播放地址", "9.6", null));
+                liveContents2.add(new Content("10", "新闻30分", Pic.PIC_PROGRAM_2, ContentType.LIVE_PROGRAM, "节目ID", "节目播放地址", "9.6", null));
                 floors.add(new Floor("0", "精彩回看", "排序", TemplateType.COUNT_TWO, ViewType.LIVE_ALL_PROGRAM, null, "所有回看", null, liveContents2, null));
 
                 List<Content> liveContents3 = new ArrayList<>();
-                liveContents3.add(new Content("11", "湖南卫视", Pic.PIC_TV_1, "直播频道类", "频道ID", "频道播放地址", "9.6", "10000次"));
-                liveContents3.add(new Content("12", "湖北卫视", Pic.PIC_TV_2, "直播频道类", "频道ID", "频道播放地址", "9.6", "2000次"));
-                liveContents3.add(new Content("13", "江苏卫视", Pic.PIC_TV_3, "直播频道类", "频道ID", "频道播放地址", "9.6", "3000次"));
-                liveContents3.add(new Content("14", "东方卫视", Pic.PIC_TV_4, "直播频道类", "频道ID", "频道播放地址", "9.6", "5000次"));
+                liveContents3.add(new Content("11", "湖南卫视", Pic.PIC_TV_1, ContentType.LIVE_CHANNEL, "频道ID", "频道播放地址", "9.6", "10000次"));
+                liveContents3.add(new Content("12", "湖北卫视", Pic.PIC_TV_2, ContentType.LIVE_CHANNEL, "频道ID", "频道播放地址", "9.6", "2000次"));
+                liveContents3.add(new Content("13", "江苏卫视", Pic.PIC_TV_3, ContentType.LIVE_CHANNEL, "频道ID", "频道播放地址", "9.6", "3000次"));
+                liveContents3.add(new Content("14", "东方卫视", Pic.PIC_TV_4, ContentType.LIVE_CHANNEL, "频道ID", "频道播放地址", "9.6", "5000次"));
                 floors.add(new Floor("0", "热门电视", "排序", TemplateType.COUNT_FOUR, ViewType.LIVE_ALL_PROGRAM, null, "所有电视", null, liveContents3, null));
                 break;
             default:
