@@ -13,11 +13,11 @@ public class Floor {
     /**
      * 采用模板
      */
-    public String displayType;
+    public String templateType;
     /**
      * 点击后跳转页面的类型
      */
-    public String view;
+    public String viewType;
     public String argument;
     public String element1;
     public String element2;
@@ -29,20 +29,20 @@ public class Floor {
      * @param id
      * @param name
      * @param order
-     * @param displayType 采用模板
-     * @param view 点击后跳转页面的类型
+     * @param templateType 采用模板
+     * @param viewType 点击后跳转页面的类型
      * @param argument
      * @param element1
      * @param element2
      * @param contents
      * @param messages
      */
-    public Floor(String id, String name, String order, String displayType, String view, String argument, String element1, String element2, List<Content> contents, List<Message> messages) {
+    public Floor(String id, String name, String order, String templateType, String viewType, String argument, String element1, String element2, List<Content> contents, List<Message> messages) {
         this.id = id;
         this.name = name;
         this.order = order;
-        this.displayType = displayType;
-        this.view = view;
+        this.templateType = templateType;
+        this.viewType = viewType;
         this.argument = argument;
         this.element1 = element1;
         this.element2 = element2;
@@ -56,8 +56,8 @@ public class Floor {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", order='" + order + '\'' +
-                ", displayType='" + displayType + '\'' +
-                ", view='" + view + '\'' +
+                ", templateType='" + templateType + '\'' +
+                ", viewType='" + viewType + '\'' +
                 ", argument='" + argument + '\'' +
                 ", element1='" + element1 + '\'' +
                 ", element2='" + element2 + '\'' +
