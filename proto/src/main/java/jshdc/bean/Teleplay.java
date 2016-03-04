@@ -1,5 +1,7 @@
 package jshdc.bean;
 
+import java.util.List;
+
 /**
  * 电视剧
  * Created by yinghuihong on 16/1/11.
@@ -16,9 +18,10 @@ public class Teleplay {
     public String playCount;
     public String total;
     public String updateCount;
+    public List<Video> videos;
 
     public Teleplay(String id, String name, String poster, String director, String actors, String description,
-                    String score, String showTime, String playCount, String total, String updateCount) {
+                    String score, String showTime, String playCount, String total, String updateCount, List<Video> videos) {
         this.id = id;
         this.name = name;
         this.poster = poster;
@@ -30,6 +33,7 @@ public class Teleplay {
         this.playCount = playCount;
         this.total = total;
         this.updateCount = updateCount;
+        this.videos = videos;
     }
 
     @Override
@@ -46,6 +50,7 @@ public class Teleplay {
                 ", playCount='" + playCount + '\'' +
                 ", total='" + total + '\'' +
                 ", updateCount='" + updateCount + '\'' +
+                ", videos=" + videos +
                 '}';
     }
 }

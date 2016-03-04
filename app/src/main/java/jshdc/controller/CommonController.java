@@ -1,7 +1,11 @@
 package jshdc.controller;
 
+import cmcc.BusinessException;
+import cmcc.CmccRequest;
+import cmcc.CmccTokenValidateResponse;
 import jshdc.bean.User;
-import jshdc.bean.response.common.*;
+import jshdc.bean.response.common.SsoResp;
+import jshdc.bean.response.common.TokenValidateResp;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,59 +16,39 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CommonController {
 
-
-    /**
-     * 短信验证码获取
-     */
-    @RequestMapping(value = "/getLoginSmsCaptcha")
-    public GetLoginSmsCaptchaResp getLoginSmsCaptcha(@RequestParam String phone) {
-        //TODO 生成captcha并通过短信下发
-        GetLoginSmsCaptchaResp resp = new GetLoginSmsCaptchaResp();
-        resp.result = 0;
-        resp.message = "success";
-        return resp;
-    }
-
-    /**
-     * 短信验证码登陆
-     */
-    @RequestMapping(value = "/loginBySmsCaptcha")
-    public LoginBySmsCaptchaResp loginBySmsCaptcha(@RequestParam String phone, @RequestParam String captcha) {
-        // TODO 1证有效性 2查询用户信息 3生成userToken返回
-
-        LoginBySmsCaptchaResp resp = new LoginBySmsCaptchaResp();
-
-        User user = new User();
-        user.userId = "userId_1";
-        user.userName = "userName_1";
-        user.portrait = Pic.PIC1;
-        user.userToken = "user_token_1";
-
-        resp.user = user;
-        resp.result = 0;
-        resp.message = "success";
-        return resp;
-    }
-
     /**
      * 全网统一认证Token登陆
      */
-    @RequestMapping(value = "/loginByUnifyToken")
-    public LoginByUnifyTokenResp loginByUnityToken(@RequestParam String unifyToken) {
-        //TODO verify unifyToken through Unity platform and return what info? phone?
-        //TODO 通过统一认证平台认证后返回的phone到家开平台数据库中查询该用户信息,得到userId
+    @RequestMapping(value = "/tokenValidate")
+    public TokenValidateResp tokenValidate(@RequestParam String token) {
 
-        LoginByUnifyTokenResp resp = new LoginByUnifyTokenResp();
+        TokenValidateResp resp = new TokenValidateResp();
+        try {
+            CmccTokenValidateResponse cmccTokenValidateResponse = CmccRequest.checkToken(token);
+            CmccTokenValidateResponse.Body body = cmccTokenValidateResponse.body;
+            // TODO save user info and token into db
 
-        User user = new User();
-        user.userId = "userId_2";
-        user.userName = "userName_2";
-        user.portrait = Pic.PIC2;
-        user.userToken = "user_token_2";
+            //返回给客户端
+            User user = new User();
+            user.id = body.passid;// 采用passId
+            user.portrait = Pic.PIC2;
+            user.phone = body.msisdn;
+            user.authtime = body.authtime;
+            user.authtype = body.authtype;
+            user.lastactivetime = body.lastactivetime;
+            user.loginidtype = body.loginidtype;
+            user.passid = body.passid;
+            user.relateToAndPassport = body.relateToAndPassport;
+            user.usessionid = body.usessionid;
 
-        resp.user = user;
-        resp.result = 0;
-        resp.message = "success";
+            resp.user = user;
+            resp.result = 0;
+            resp.message = "success";
+        } catch (BusinessException e) {
+            resp.result = e.getCode();
+            resp.message = e.getMessage();
+        }
+        System.out.println(resp);
         return resp;
     }
 
@@ -72,11 +56,12 @@ public class CommonController {
      * 单点登录认证（供华为EPG/CDN平台调用）
      */
     @RequestMapping(value = "/sso")
-    public SsoResp sso(@RequestParam String userToken) {
+    public SsoResp sso(@RequestParam String token) {
         // TODO verify whether the userToken is available
         SsoResp resp = new SsoResp();
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 

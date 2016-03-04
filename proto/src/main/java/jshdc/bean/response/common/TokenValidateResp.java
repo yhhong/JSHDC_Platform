@@ -3,10 +3,10 @@ package jshdc.bean.response.common;
 import jshdc.bean.User;
 
 /**
- * 全网统一认证登陆
+ * 全网统一认证TOKEN验证
  * Created by yinghuihong on 16/1/26.
  */
-public class LoginByUnifyTokenResp {
+public class TokenValidateResp {
 
     public int result;
     public String message;
@@ -14,7 +14,7 @@ public class LoginByUnifyTokenResp {
 
     @Override
     public String toString() {
-        return "LoginByUnifyTokenResp{" +
+        return "TokenValidateResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
                 ", user=" + user +

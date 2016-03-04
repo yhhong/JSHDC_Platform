@@ -3,15 +3,16 @@ package jshdc.controller;
 import jshdc.bean.*;
 import jshdc.bean.response.ott.*;
 import jshdc.type.ContentType;
-import jshdc.util.ContentUrl;
 import jshdc.type.TemplateType;
 import jshdc.type.ViewType;
+import jshdc.util.ContentUrl;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * OTT视频
@@ -21,7 +22,7 @@ import java.util.List;
 public class OttController {
 
     @RequestMapping(value = "/getColumns")
-    public GetColumnsResp getColumns(@RequestParam String userToken,
+    public GetColumnsResp getColumns(@RequestParam String token,
                                      @RequestParam long lastModifyTime) {
         GetColumnsResp resp = new GetColumnsResp();
 
@@ -45,11 +46,12 @@ public class OttController {
         resp.result = 0;
         resp.message = "success";
         resp.lastModifyTime = System.currentTimeMillis();
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getFloors")
-    public GetFloorsResp getFloors(@RequestParam String userToken,
+    public GetFloorsResp getFloors(@RequestParam String token,
                                    @RequestParam String columnId,
                                    @RequestParam long lastModifyTime) {
         GetFloorsResp resp = new GetFloorsResp();
@@ -129,11 +131,12 @@ public class OttController {
         resp.result = 0;
         resp.message = "success";
         resp.lastModifyTime = System.currentTimeMillis();
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getContents")
-    public GetContentsResp getContents(@RequestParam String userToken,
+    public GetContentsResp getContents(@RequestParam String token,
                                        @RequestParam String floorId,
                                        @RequestParam(required = false, defaultValue = "0") int start,
                                        @RequestParam(required = false, defaultValue = "20") int limit) {
@@ -145,11 +148,12 @@ public class OttController {
         resp.contents = contents;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getChannelDetail")
-    public GetChannelDetailResp getChannelDetail(@RequestParam String userToken,
+    public GetChannelDetailResp getChannelDetail(@RequestParam String token,
                                                  @RequestParam String channelId) {
         GetChannelDetailResp resp = new GetChannelDetailResp();
         Channel channel;
@@ -189,11 +193,12 @@ public class OttController {
                 break;
         }
         resp.channel = channel;
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getProgramDetail")
-    public GetProgramDetailResp getProgramDetail(@RequestParam String userToken,
+    public GetProgramDetailResp getProgramDetail(@RequestParam String token,
                                                  @RequestParam String programId) {
         GetProgramDetailResp resp = new GetProgramDetailResp();
         Program program;
@@ -211,111 +216,112 @@ public class OttController {
         resp.program = program;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
 
     @RequestMapping(value = "/getTeleplayDetail")
-    public GetTeleplayDetailResp getTeleplayDetail(@RequestParam String userToken,
+    public GetTeleplayDetailResp getTeleplayDetail(@RequestParam String token,
                                                    @RequestParam String teleplayId) {
         GetTeleplayDetailResp resp = new GetTeleplayDetailResp();
         Teleplay teleplay;
         switch (teleplayId) {
             case "1":
-                teleplay = new Teleplay("1", "名侦探柯南", null, "导演", "柯南/新一/小兰", "真相只有一个", "9.1", "2001", "21亿", "800集", "656集");
+                teleplay = new Teleplay("1", "名侦探柯南", null, "导演", "柯南/新一/小兰", "真相只有一个", "9.1", "2001", "21亿", "400集", "256集", makeTeleplayVideos(256));
                 break;
             case "2":
-                teleplay = new Teleplay("2", "全职猎人", null, "导演", "小杰/西索", "惊险刺激的游戏世界,小杰与西索幻影旅团的精彩对决", "9.3", "2001", "500万", "80集", "80集");
+                teleplay = new Teleplay("2", "全职猎人", null, "导演", "小杰/西索", "惊险刺激的游戏世界,小杰与西索幻影旅团的精彩对决", "9.3", "2001", "500万", "80集", "80集", makeTeleplayVideos(80));
                 break;
             case "3":
-                teleplay = new Teleplay("3", "乌龙派出所", null, "导演", "两津勘吉/中山/本田", "龟有公园前派出所,爆笑登场", "9.9", "2001", "2000万", "320集", "320集");
+                teleplay = new Teleplay("3", "乌龙派出所", null, "导演", "两津勘吉/中山/本田", "龟有公园前派出所,爆笑登场", "9.9", "2001", "2000万", "320集", "320集", makeTeleplayVideos(320));
                 break;
             default:
-                teleplay = new Teleplay("1", "名侦探柯南", null, "导演", "柯南/新一/小兰", "真相只有一个", "9.1", "2001", "21亿", "800集", "656集");
+                teleplay = new Teleplay("1", "名侦探柯南", null, "导演", "柯南/新一/小兰", "真相只有一个", "9.1", "2001", "21亿", "400集", "156集", makeTeleplayVideos(156));
                 break;
         }
         resp.teleplay = teleplay;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
-    @RequestMapping(value = "/getTeleplayVideos")
-    public GetTeleplayVideosResp getTeleplayVideos(@RequestParam String userToken,
-                                                   @RequestParam String teleplayId) {
-        GetTeleplayVideosResp resp = new GetTeleplayVideosResp();
+    /**
+     * 配置视频列表
+     *
+     * @param updateCount 已更新集数
+     * @return
+     */
+    private List<Video> makeTeleplayVideos(int updateCount) {
         List<Video> videos = new ArrayList<>();
-        switch (teleplayId) {
-            case "1":
-            case "2":
-            case "3":
-            default:
-                videos.add(new Video("1", ContentUrl.MOVE1, "生化危机", null, null, null, null, "8.9", null, "12345次", "95分钟"));
-                videos.add(new Video("2", ContentUrl.MOVE2, "古墓丽影", null, null, null, null, "8.0", null, "31345次", "105分钟"));
-                videos.add(new Video("3", ContentUrl.MOVE3, "像素大战", null, null, null, null, "9.0", null, "33345次", "112分钟"));
-                videos.add(new Video("4", ContentUrl.MOVE4, "地牢围攻", null, null, null, null, "8.8", null, "12331次", "95分钟"));
-                videos.add(new Video("5", ContentUrl.MOVE5, "超能特工队", null, null, null, null, "8.7", null, "55335次", "90分钟"));
-                videos.add(new Video("6", ContentUrl.MOVE6, "头脑特工队", null, null, null, null, "9.9", null, "14242次", "93分钟"));
-                videos.add(new Video("7", ContentUrl.MOVE7, "熊出没之雪岭熊风", null, null, null, null, "7.0", null, "12245次", "98分钟"));
-                videos.add(new Video("8", ContentUrl.MOVE8, "63_芈月传", null, null, null, null, "7.7", null, "42545次", "97分钟"));
-                videos.add(new Video("9", ContentUrl.MOVE9, "十七岁", null, null, null, null, "8.9", null, "1345次", "125分钟"));
-                videos.add(new Video("10", ContentUrl.MOVE10, "解救吾先生", null, null, null, null, "9.1", null, "26445次", "153分钟"));
-                break;
+        videos.add(new Video("1", ContentUrl.MOVE1, "生化危机", null, null, null, null, "8.9", null, "12345次", "95分钟", false));
+        videos.add(new Video("2", ContentUrl.MOVE2, "古墓丽影", null, null, null, null, "8.0", null, "31345次", "105分钟", false));
+        videos.add(new Video("3", ContentUrl.MOVE3, "像素大战", null, null, null, null, "9.0", null, "33345次", "112分钟", false));
+        videos.add(new Video("4", ContentUrl.MOVE4, "地牢围攻", null, null, null, null, "8.8", null, "12331次", "95分钟", false));
+        videos.add(new Video("5", ContentUrl.MOVE5, "超能特工队", null, null, null, null, "8.7", null, "55335次", "90分钟", false));
+        videos.add(new Video("6", ContentUrl.MOVE6, "头脑特工队", null, null, null, null, "9.9", null, "14242次", "93分钟", false));
+        videos.add(new Video("7", ContentUrl.MOVE7, "熊出没之雪岭熊风", null, null, null, null, "7.0", null, "12245次", "98分钟", false));
+        videos.add(new Video("8", ContentUrl.MOVE8, "63_芈月传", null, null, null, null, "7.7", null, "42545次", "97分钟", false));
+        videos.add(new Video("9", ContentUrl.MOVE9, "十七岁", null, null, null, null, "8.9", null, "1345次", "125分钟", false));
+        videos.add(new Video("10", ContentUrl.MOVE10, "解救吾先生", null, null, null, null, "9.1", null, "26445次", "153分钟", false));
+
+        List<Video> vs = new ArrayList<>();
+        for (int i = 0; i < updateCount; i++) {
+            vs.add(videos.get(new Random().nextInt(videos.size())));
         }
-        resp.videos = videos;
-        resp.result = 0;
-        resp.message = "success";
-        return resp;
+        return vs;
     }
 
     @RequestMapping(value = "/getVideoDetail")
-    public GetVideoDetailResp getVideoDetail(@RequestParam String userToken,
+    public GetVideoDetailResp getVideoDetail(@RequestParam String token,
                                              @RequestParam String videoId) {
         GetVideoDetailResp resp = new GetVideoDetailResp();
         Video video;
         switch (videoId) {
             case "1":
-                video = new Video("1", ContentUrl.MOVE1, "生化危机", null, null, null, null, "8.9", null, "12345次", "95分钟");
+                video = new Video("1", ContentUrl.MOVE1, "生化危机", null, null, null, null, "8.9", null, "12345次", "95分钟", false);
                 break;
             case "2":
-                video = new Video("2", ContentUrl.MOVE2, "古墓丽影", null, null, null, null, "8.0", null, "31345次", "105分钟");
+                video = new Video("2", ContentUrl.MOVE2, "古墓丽影", null, null, null, null, "8.0", null, "31345次", "105分钟", false);
                 break;
             case "3":
-                video = new Video("3", ContentUrl.MOVE3, "像素大战", null, null, null, null, "9.0", null, "33345次", "112分钟");
+                video = new Video("3", ContentUrl.MOVE3, "像素大战", null, null, null, null, "9.0", null, "33345次", "112分钟", false);
                 break;
             case "4":
-                video = new Video("4", ContentUrl.MOVE4, "地牢围攻", null, null, null, null, "8.8", null, "12331次", "95分钟");
+                video = new Video("4", ContentUrl.MOVE4, "地牢围攻", null, null, null, null, "8.8", null, "12331次", "95分钟", false);
                 break;
             case "5":
-                video = new Video("5", ContentUrl.MOVE5, "超能特工队", null, null, null, null, "8.7", null, "55335次", "90分钟");
+                video = new Video("5", ContentUrl.MOVE5, "超能特工队", null, null, null, null, "8.7", null, "55335次", "90分钟", false);
                 break;
             case "6":
-                video = new Video("6", ContentUrl.MOVE6, "头脑特工队", null, null, null, null, "9.9", null, "14242次", "93分钟");
+                video = new Video("6", ContentUrl.MOVE6, "头脑特工队", null, null, null, null, "9.9", null, "14242次", "93分钟", false);
                 break;
             case "7":
-                video = new Video("7", ContentUrl.MOVE7, "熊出没之雪岭熊风", null, null, null, null, "7.0", null, "12245次", "98分钟");
+                video = new Video("7", ContentUrl.MOVE7, "熊出没之雪岭熊风", null, null, null, null, "7.0", null, "12245次", "98分钟", false);
                 break;
             case "8":
-                video = new Video("8", ContentUrl.MOVE8, "63_芈月传", null, null, null, null, "7.7", null, "42545次", "97分钟");
+                video = new Video("8", ContentUrl.MOVE8, "63_芈月传", null, null, null, null, "7.7", null, "42545次", "97分钟", false);
                 break;
             case "9":
-                video = new Video("9", ContentUrl.MOVE9, "十七岁", null, null, null, null, "8.9", null, "1345次", "125分钟");
+                video = new Video("9", ContentUrl.MOVE9, "十七岁", null, null, null, null, "8.9", null, "1345次", "125分钟", false);
                 break;
             case "10":
-                video = new Video("10", ContentUrl.MOVE10, "解救吾先生", null, null, null, null, "9.1", null, "26445次", "153分钟");
+                video = new Video("10", ContentUrl.MOVE10, "解救吾先生", null, null, null, null, "9.1", null, "26445次", "153分钟", false);
                 break;
             default:
-                video = new Video("1", ContentUrl.MOVE1, "生化危机", null, null, null, null, "8.9", null, "12345次", "95分钟");
+                video = new Video("1", ContentUrl.MOVE1, "生化危机", null, null, null, null, "8.9", null, "12345次", "95分钟", false);
                 break;
         }
         resp.video = video;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getChannelTags")
-    public GetChannelTagsResp getChannelTags(@RequestParam String userToken) {
+    public GetChannelTagsResp getChannelTags(@RequestParam String token) {
         GetChannelTagsResp resp = new GetChannelTagsResp();
         List<ChannelTag> tags = new ArrayList<>();
         tags.add(new ChannelTag("1", "所有"));
@@ -330,11 +336,12 @@ public class OttController {
         resp.channelTags = tags;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getChannels")
-    public GetChannelsResp getChannels(@RequestParam String userToken,
+    public GetChannelsResp getChannels(@RequestParam String token,
                                        @RequestParam String channelTagId) {
         GetChannelsResp resp = new GetChannelsResp();
         List<Channel> channels = new ArrayList<>();
@@ -398,11 +405,12 @@ public class OttController {
         resp.channels = channels;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getChannelPrograms")
-    public GetProgramsResp getChannelPrograms(@RequestParam String userToken,
+    public GetProgramsResp getChannelPrograms(@RequestParam String token,
                                               @RequestParam String channelId,
                                               @RequestParam long startTime,
                                               @RequestParam long endTime) {
@@ -432,11 +440,12 @@ public class OttController {
         resp.programs = programs;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getRecommendContents")
-    public GetRecommendContentsResp getRecommendContents(@RequestParam String userToken,
+    public GetRecommendContentsResp getRecommendContents(@RequestParam String token,
                                                          @RequestParam String contentType,
                                                          @RequestParam String contentTableId) {
         GetRecommendContentsResp resp = new GetRecommendContentsResp();
@@ -455,11 +464,12 @@ public class OttController {
         resp.contents = contents;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/search")
-    public SearchResp search(@RequestParam String userToken,
+    public SearchResp search(@RequestParam String token,
                              @RequestParam String text,
                              @RequestParam(required = false, defaultValue = "0") int start,
                              @RequestParam(required = false, defaultValue = "20") int limit) {
@@ -471,31 +481,34 @@ public class OttController {
         resp.contents = contents;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/postCollect")
-    public PostCollectResp postCollect(@RequestParam String userToken,
+    public PostCollectResp postCollect(@RequestParam String token,
                                        @RequestParam String contentType,
                                        @RequestParam String contentTableId) {
         PostCollectResp resp = new PostCollectResp();
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/deleteCollect")
-    public DeleteCollectResp deleteCollect(@RequestParam String userToken,
+    public DeleteCollectResp deleteCollect(@RequestParam String token,
                                            @RequestParam String contentType,
                                            @RequestParam String contentTableId) {
         DeleteCollectResp resp = new DeleteCollectResp();
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getCollects")
-    public GetCollectsResp getCollects(@RequestParam String userToken,
+    public GetCollectsResp getCollects(@RequestParam String token,
                                        @RequestParam String contentType,
                                        @RequestParam(required = false, defaultValue = "0") int start,
                                        @RequestParam(required = false, defaultValue = "20") int limit) {
@@ -518,11 +531,12 @@ public class OttController {
         resp.collects = collects;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/postRecord")
-    public PostRecordResp postRecord(@RequestParam String userToken,
+    public PostRecordResp postRecord(@RequestParam String token,
                                      @RequestParam String contentType,
                                      @RequestParam String contentTableId,
                                      @RequestParam String record) {
@@ -530,11 +544,12 @@ public class OttController {
         PostRecordResp resp = new PostRecordResp();
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 
     @RequestMapping(value = "/getRecords")
-    public GetRecordsResp getRecords(@RequestParam String userToken,
+    public GetRecordsResp getRecords(@RequestParam String token,
                                      @RequestParam String contentType,
                                      @RequestParam(required = false, defaultValue = "0") int start,
                                      @RequestParam(required = false, defaultValue = "20") int limit) {
@@ -557,6 +572,7 @@ public class OttController {
         resp.records = records;
         resp.result = 0;
         resp.message = "success";
+        System.out.println(resp);
         return resp;
     }
 

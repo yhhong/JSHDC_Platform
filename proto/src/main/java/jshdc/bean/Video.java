@@ -16,9 +16,10 @@ public class Video {
     public String showTime;
     public String playCount;
     public String time;
+    public boolean collected;
 
-    public Video(String id, String playId, String name, String poster, String director, String actors, String description,
-                 String score, String showTime, String playCount, String time) {
+    public Video(String id, String playId, String name, String poster, String director, String actors,
+                 String description, String score, String showTime, String playCount, String time, boolean collected) {
         this.id = id;
         this.playId = playId;
         this.name = name;
@@ -30,6 +31,7 @@ public class Video {
         this.showTime = showTime;
         this.playCount = playCount;
         this.time = time;
+        this.collected = collected;
     }
 
     @Override
@@ -46,6 +48,7 @@ public class Video {
                 ", showTime='" + showTime + '\'' +
                 ", playCount='" + playCount + '\'' +
                 ", time='" + time + '\'' +
+                ", collected=" + collected +
                 '}';
     }
 }
