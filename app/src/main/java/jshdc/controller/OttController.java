@@ -5,7 +5,7 @@ import jshdc.bean.response.ott.*;
 import jshdc.type.ContentType;
 import jshdc.type.TemplateType;
 import jshdc.type.ViewType;
-import jshdc.util.ContentUrl;
+import jshdc.content.ContentUrl;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +22,7 @@ import java.util.Random;
 public class OttController {
 
     @RequestMapping(value = "/getColumns")
-    public GetColumnsResp getColumns(@RequestParam String token,
+    public GetColumnsResp getColumns(@RequestParam String userToken,
                                      @RequestParam long lastModifyTime) {
         GetColumnsResp resp = new GetColumnsResp();
 
@@ -51,7 +51,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getFloors")
-    public GetFloorsResp getFloors(@RequestParam String token,
+    public GetFloorsResp getFloors(@RequestParam String userToken,
                                    @RequestParam String columnId,
                                    @RequestParam long lastModifyTime) {
         GetFloorsResp resp = new GetFloorsResp();
@@ -65,64 +65,64 @@ public class OttController {
         switch (columnId) {
             case "0":
                 List<Content> contents1 = new ArrayList<>();
-                contents1.add(new Content("1", "飞屋环游记", Pic.PIC_BIG_1, ContentType.VIDEO, "视频ID", "视频播放地址", null, null));
-                contents1.add(new Content("2", "叛逆的鲁路修第110话", Pic.PIC_BIG_2, ContentType.VIDEO, "视频ID", "视频播放地址", null, null));
-                contents1.add(new Content("3", "少年派的奇幻漂流", Pic.PIC_BIG_3, ContentType.VIDEO, "视频ID", "视频播放地址", null, null));
-                contents1.add(new Content("4", "海贼王第710话", Pic.PIC_BIG_4, ContentType.VIDEO, "视频ID", "视频播放地址", null, null));
+                contents1.add(new Content("1", "飞屋环游记", ContentUrl.Pic.PIC_BIG_1, ContentType.VIDEO, "视频ID", ContentUrl.MOVE1, null, null));
+                contents1.add(new Content("2", "叛逆的鲁路修第110话", ContentUrl.Pic.PIC_BIG_2, ContentType.VIDEO, "视频ID", ContentUrl.MOVE2, null, null));
+                contents1.add(new Content("3", "少年派的奇幻漂流", ContentUrl.Pic.PIC_BIG_3, ContentType.VIDEO, "视频ID", ContentUrl.MOVE3, null, null));
+                contents1.add(new Content("4", "海贼王第710话", ContentUrl.Pic.PIC_BIG_4, ContentType.VIDEO, "视频ID", ContentUrl.MOVE4, null, null));
                 floors.add(new Floor("0", null, "排序", TemplateType.CAROUSEL, null, null, null, null, contents1, null));
 
                 List<Content> contents2 = new ArrayList<>();
-                contents2.add(new Content("5", "[CCTV5]世界杯战况", Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "频道ID", "频道播放地址", "9.6", "10000次"));
-                contents2.add(new Content("6", "[江苏卫视]舌尖上的中国", Pic.PIC_PROGRAM_3, ContentType.PROGRAM, "频道ID", "频道播放地址", "9.6", "2000次"));
+                contents2.add(new Content("5", "[CCTV5]世界杯战况", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "频道ID", ContentUrl.CCTV5, "9.6", "10000次"));
+                contents2.add(new Content("6", "[江苏卫视]舌尖上的中国", ContentUrl.Pic.PIC_PROGRAM_3, ContentType.PROGRAM, "频道ID", ContentUrl.CCTV10, "9.6", "2000次"));
                 floors.add(new Floor("0", "直播", "排序", TemplateType.COUNT_TWO, ViewType.LIVE_MAIN, null, "CCTV5/江苏卫视", null, contents2, null));
 
                 List<Content> contents3 = new ArrayList<>();
-                contents3.add(new Content("7", "名侦探柯南", Pic.PIC_SMALL_1, ContentType.VIDEO, "节目ID", "节目播放地址", "9.6", null));
-                contents3.add(new Content("8", "全职猎人", Pic.PIC_SMALL_2, ContentType.VIDEO, "节目ID", "节目播放地址", "9.6", null));
+                contents3.add(new Content("7", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, ContentType.VIDEO, "视频ID", ContentUrl.MOVE5, "9.6", null));
+                contents3.add(new Content("8", "全职猎人", ContentUrl.Pic.PIC_SMALL_2, ContentType.VIDEO, "视频ID", ContentUrl.MOVE6, "9.6", null));
                 floors.add(new Floor("0", "点播", "排序", TemplateType.COUNT_TWO, ViewType.VOD_MAIN, null, "精选/欧美/电视剧/娱乐", null, contents3, null));
                 break;
             case "1":
                 List<Content> liveContents1 = new ArrayList<>();
-                liveContents1.add(new Content("1", "飞屋环游记", Pic.PIC_BIG_1, ContentType.PROGRAM, "节目ID", "节目播放地址", null, null));
-                liveContents1.add(new Content("2", "叛逆的鲁路修第110话", Pic.PIC_BIG_2, ContentType.PROGRAM, "节目ID", "节目播放地址", null, null));
-                liveContents1.add(new Content("3", "少年派的奇幻漂流", Pic.PIC_BIG_3, ContentType.PROGRAM, "节目ID", "节目播放地址", null, null));
-                liveContents1.add(new Content("4", "海贼王第710话", Pic.PIC_BIG_4, ContentType.PROGRAM, "节目ID", "节目播放地址", null, null));
+                liveContents1.add(new Content("1", "飞屋环游记", ContentUrl.Pic.PIC_BIG_1, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV1, null, null));
+                liveContents1.add(new Content("2", "叛逆的鲁路修第110话", ContentUrl.Pic.PIC_BIG_2, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV2, null, null));
+                liveContents1.add(new Content("3", "少年派的奇幻漂流", ContentUrl.Pic.PIC_BIG_3, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV3, null, null));
+                liveContents1.add(new Content("4", "海贼王第710话", ContentUrl.Pic.PIC_BIG_4, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV4, null, null));
                 floors.add(new Floor("0", null, "排序", TemplateType.CAROUSEL, null, null, null, null, liveContents1, null));
 
                 List<Content> liveContents2 = new ArrayList<>();
-                liveContents2.add(new Content("9", "巴西世界杯", Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "节目ID", "节目播放地址", "9.6", null));
-                liveContents2.add(new Content("10", "新闻30分", Pic.PIC_PROGRAM_2, ContentType.PROGRAM, "节目ID", "节目播放地址", "9.6", null));
+                liveContents2.add(new Content("9", "巴西世界杯", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV6, "9.6", null));
+                liveContents2.add(new Content("10", "新闻30分", ContentUrl.Pic.PIC_PROGRAM_2, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV9, "9.6", null));
                 floors.add(new Floor("0", "精彩回看", "排序", TemplateType.COUNT_TWO, ViewType.LIVE_PROGRAMME, null, "所有回看", null, liveContents2, null));
 
                 List<Content> liveContents3 = new ArrayList<>();
-                liveContents3.add(new Content("11", "湖南卫视", Pic.PIC_TV_1, ContentType.CHANNEL, "频道ID", "频道播放地址", "9.6", "10000次"));
-                liveContents3.add(new Content("12", "湖北卫视", Pic.PIC_TV_2, ContentType.CHANNEL, "频道ID", "频道播放地址", "9.6", "2000次"));
-                liveContents3.add(new Content("13", "江苏卫视", Pic.PIC_TV_3, ContentType.CHANNEL, "频道ID", "频道播放地址", "9.6", "3000次"));
-                liveContents3.add(new Content("14", "东方卫视", Pic.PIC_TV_4, ContentType.CHANNEL, "频道ID", "频道播放地址", "9.6", "5000次"));
+                liveContents3.add(new Content("11", "湖南卫视", ContentUrl.Pic.PIC_TV_1, ContentType.CHANNEL, "频道ID", ContentUrl.CCTV1, "9.6", "10000次"));
+                liveContents3.add(new Content("12", "湖北卫视", ContentUrl.Pic.PIC_TV_2, ContentType.CHANNEL, "频道ID", ContentUrl.CCTV2, "9.6", "2000次"));
+                liveContents3.add(new Content("13", "江苏卫视", ContentUrl.Pic.PIC_TV_3, ContentType.CHANNEL, "频道ID", ContentUrl.CCTV3, "9.6", "3000次"));
+                liveContents3.add(new Content("14", "东方卫视", ContentUrl.Pic.PIC_TV_4, ContentType.CHANNEL, "频道ID", ContentUrl.CCTV4, "9.6", "5000次"));
                 floors.add(new Floor("0", "热门电视", "排序", TemplateType.COUNT_FOUR, ViewType.LIVE_PROGRAMME, null, "所有电视", null, liveContents3, null));
                 break;
             default:
                 List<Content> vodContents1 = new ArrayList<>();
-                vodContents1.add(new Content("1", "飞屋环游记", Pic.PIC_BIG_1, ContentType.VIDEO, "视频ID", "视频播放地址", null, null));
-                vodContents1.add(new Content("2", "叛逆的鲁路修第110话", Pic.PIC_BIG_2, ContentType.VIDEO, "视频ID", "视频播放地址", null, null));
-                vodContents1.add(new Content("3", "少年派的奇幻漂流", Pic.PIC_BIG_3, ContentType.VIDEO, "视频ID", "视频播放地址", null, null));
-                vodContents1.add(new Content("4", "海贼王第710话", Pic.PIC_BIG_4, ContentType.VIDEO, "视频ID", "视频播放地址", null, null));
+                vodContents1.add(new Content("1", "飞屋环游记", ContentUrl.Pic.PIC_BIG_1, ContentType.VIDEO, "视频ID", ContentUrl.MOVE1, null, null));
+                vodContents1.add(new Content("2", "叛逆的鲁路修第110话", ContentUrl.Pic.PIC_BIG_2, ContentType.VIDEO, "视频ID", ContentUrl.MOVE2, null, null));
+                vodContents1.add(new Content("3", "少年派的奇幻漂流", ContentUrl.Pic.PIC_BIG_3, ContentType.VIDEO, "视频ID", ContentUrl.MOVE3, null, null));
+                vodContents1.add(new Content("4", "海贼王第710话", ContentUrl.Pic.PIC_BIG_4, ContentType.VIDEO, "视频ID", ContentUrl.MOVE4, null, null));
                 floors.add(new Floor("0", null, "排序", TemplateType.CAROUSEL, null, null, null, null, vodContents1, null));
 
                 List<Content> vodContents2 = new ArrayList<>();
-                vodContents2.add(new Content("21", "霍比特人意外之旅", Pic.PIC_SMALL_6, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", "10000次"));
-                vodContents2.add(new Content("22", "指环王", Pic.PIC_SMALL_7, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", "2000次"));
+                vodContents2.add(new Content("21", "霍比特人意外之旅", ContentUrl.Pic.PIC_SMALL_6, ContentType.VIDEO, "视频ID", ContentUrl.MOVE5, "9.6", "10000次"));
+                vodContents2.add(new Content("22", "指环王", ContentUrl.Pic.PIC_SMALL_7, ContentType.VIDEO, "视频ID", ContentUrl.MOVE6, "9.6", "2000次"));
                 floors.add(new Floor("0", "电影", "排序", TemplateType.COUNT_TWO, null, null, null, null, vodContents2, null));
 
                 List<Content> vodContents3 = new ArrayList<>();
-                vodContents3.add(new Content("31", "名侦探柯南", Pic.PIC_SMALL_1, ContentType.TELEPLAY, "电视剧ID", "电视剧内容ID", null, null));
-                vodContents3.add(new Content("32", "全职猎人", Pic.PIC_SMALL_2, ContentType.TELEPLAY, "电视剧ID", "电视剧内容ID", null, null));
-                vodContents3.add(new Content("33", "乌龙派出所", Pic.PIC_SMALL_3, ContentType.TELEPLAY, "电视剧ID", "电视剧内容ID", null, null));
+                vodContents3.add(new Content("31", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, ContentType.TELEPLAY, "电视剧ID", "电视剧内容ID", null, null));
+                vodContents3.add(new Content("32", "全职猎人", ContentUrl.Pic.PIC_SMALL_2, ContentType.TELEPLAY, "电视剧ID", "电视剧内容ID", null, null));
+                vodContents3.add(new Content("33", "乌龙派出所", ContentUrl.Pic.PIC_SMALL_3, ContentType.TELEPLAY, "电视剧ID", "电视剧内容ID", null, null));
                 floors.add(new Floor("0", "电视剧", "排序", TemplateType.COUNT_THREE, null, null, null, null, vodContents3, null));
 
                 List<Content> vodContents4 = new ArrayList<>();
-                vodContents4.add(new Content("23", "幽游白书", Pic.PIC_SMALL_4, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", null));
-                vodContents4.add(new Content("24", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", null));
+                vodContents4.add(new Content("23", "幽游白书", ContentUrl.Pic.PIC_SMALL_4, ContentType.VIDEO, "视频ID", ContentUrl.MOVE7, "9.6", null));
+                vodContents4.add(new Content("24", "神奇宝贝", ContentUrl.Pic.PIC_SMALL_5, ContentType.VIDEO, "视频ID", ContentUrl.MOVE8, "9.6", null));
                 floors.add(new Floor("0", "动漫", "排序", TemplateType.COUNT_TWO, null, null, null, null, vodContents4, null));
                 break;
         }
@@ -136,13 +136,13 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getContents")
-    public GetContentsResp getContents(@RequestParam String token,
+    public GetContentsResp getContents(@RequestParam String userToken,
                                        @RequestParam String floorId,
                                        @RequestParam(required = false, defaultValue = "0") int start,
                                        @RequestParam(required = false, defaultValue = "20") int limit) {
         List<Content> contents = new ArrayList<>();
-        contents.add(new Content("23", "幽游白书", Pic.PIC_SMALL_4, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", null));
-        contents.add(new Content("24", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", null));
+        contents.add(new Content("23", "幽游白书", ContentUrl.Pic.PIC_SMALL_4, ContentType.VIDEO, "视频ID", ContentUrl.MOVE1, "9.6", null));
+        contents.add(new Content("24", "神奇宝贝", ContentUrl.Pic.PIC_SMALL_5, ContentType.VIDEO, "视频ID", ContentUrl.MOVE2, "9.6", null));
 
         GetContentsResp resp = new GetContentsResp();
         resp.contents = contents;
@@ -153,7 +153,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getChannelDetail")
-    public GetChannelDetailResp getChannelDetail(@RequestParam String token,
+    public GetChannelDetailResp getChannelDetail(@RequestParam String userToken,
                                                  @RequestParam String channelId) {
         GetChannelDetailResp resp = new GetChannelDetailResp();
         Channel channel;
@@ -198,7 +198,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getProgramDetail")
-    public GetProgramDetailResp getProgramDetail(@RequestParam String token,
+    public GetProgramDetailResp getProgramDetail(@RequestParam String userToken,
                                                  @RequestParam String programId) {
         GetProgramDetailResp resp = new GetProgramDetailResp();
         Program program;
@@ -222,7 +222,7 @@ public class OttController {
 
 
     @RequestMapping(value = "/getTeleplayDetail")
-    public GetTeleplayDetailResp getTeleplayDetail(@RequestParam String token,
+    public GetTeleplayDetailResp getTeleplayDetail(@RequestParam String userToken,
                                                    @RequestParam String teleplayId) {
         GetTeleplayDetailResp resp = new GetTeleplayDetailResp();
         Teleplay teleplay;
@@ -274,7 +274,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getVideoDetail")
-    public GetVideoDetailResp getVideoDetail(@RequestParam String token,
+    public GetVideoDetailResp getVideoDetail(@RequestParam String userToken,
                                              @RequestParam String videoId) {
         GetVideoDetailResp resp = new GetVideoDetailResp();
         Video video;
@@ -321,7 +321,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getChannelTags")
-    public GetChannelTagsResp getChannelTags(@RequestParam String token) {
+    public GetChannelTagsResp getChannelTags(@RequestParam String userToken) {
         GetChannelTagsResp resp = new GetChannelTagsResp();
         List<ChannelTag> tags = new ArrayList<>();
         tags.add(new ChannelTag("1", "所有"));
@@ -341,7 +341,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getChannels")
-    public GetChannelsResp getChannels(@RequestParam String token,
+    public GetChannelsResp getChannels(@RequestParam String userToken,
                                        @RequestParam String channelTagId) {
         GetChannelsResp resp = new GetChannelsResp();
         List<Channel> channels = new ArrayList<>();
@@ -410,7 +410,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getChannelPrograms")
-    public GetProgramsResp getChannelPrograms(@RequestParam String token,
+    public GetProgramsResp getChannelPrograms(@RequestParam String userToken,
                                               @RequestParam String channelId,
                                               @RequestParam long startTime,
                                               @RequestParam long endTime) {
@@ -445,7 +445,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getRecommendContents")
-    public GetRecommendContentsResp getRecommendContents(@RequestParam String token,
+    public GetRecommendContentsResp getRecommendContents(@RequestParam String userToken,
                                                          @RequestParam String contentType,
                                                          @RequestParam String contentTableId) {
         GetRecommendContentsResp resp = new GetRecommendContentsResp();
@@ -457,8 +457,8 @@ public class OttController {
             case ContentType.VIDEO:
             default:
                 // TODO 再根据contentTableId进行相关内容列表推荐;或者通过EPG;如分析contentTableId对应的标签,推荐相同标签的内容
-                contents.add(new Content("23", "幽游白书", Pic.PIC_SMALL_4, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", null));
-                contents.add(new Content("24", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", null));
+                contents.add(new Content("23", "幽游白书", ContentUrl.Pic.PIC_SMALL_4, ContentType.VIDEO, "视频ID", ContentUrl.MOVE1, "9.6", null));
+                contents.add(new Content("24", "神奇宝贝", ContentUrl.Pic.PIC_SMALL_5, ContentType.VIDEO, "视频ID", ContentUrl.MOVE2, "9.6", null));
                 break;
         }
         resp.contents = contents;
@@ -469,13 +469,13 @@ public class OttController {
     }
 
     @RequestMapping(value = "/search")
-    public SearchResp search(@RequestParam String token,
+    public SearchResp search(@RequestParam String userToken,
                              @RequestParam String text,
                              @RequestParam(required = false, defaultValue = "0") int start,
                              @RequestParam(required = false, defaultValue = "20") int limit) {
         List<Content> contents = new ArrayList<>();
-        contents.add(new Content("23", "幽游白书", Pic.PIC_SMALL_4, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", null));
-        contents.add(new Content("24", "神奇宝贝", Pic.PIC_SMALL_5, ContentType.VIDEO, "视频ID", "视频播放地址", "9.6", null));
+        contents.add(new Content("23", "幽游白书", ContentUrl.Pic.PIC_SMALL_4, ContentType.VIDEO, "视频ID", ContentUrl.MOVE3, "9.6", null));
+        contents.add(new Content("24", "神奇宝贝", ContentUrl.Pic.PIC_SMALL_5, ContentType.VIDEO, "视频ID", ContentUrl.MOVE4, "9.6", null));
 
         SearchResp resp = new SearchResp();
         resp.contents = contents;
@@ -486,7 +486,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/postCollect")
-    public PostCollectResp postCollect(@RequestParam String token,
+    public PostCollectResp postCollect(@RequestParam String userToken,
                                        @RequestParam String contentType,
                                        @RequestParam String contentTableId) {
         PostCollectResp resp = new PostCollectResp();
@@ -497,7 +497,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/deleteCollect")
-    public DeleteCollectResp deleteCollect(@RequestParam String token,
+    public DeleteCollectResp deleteCollect(@RequestParam String userToken,
                                            @RequestParam String contentType,
                                            @RequestParam String contentTableId) {
         DeleteCollectResp resp = new DeleteCollectResp();
@@ -508,7 +508,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getCollects")
-    public GetCollectsResp getCollects(@RequestParam String token,
+    public GetCollectsResp getCollects(@RequestParam String userToken,
                                        @RequestParam String contentType,
                                        @RequestParam(required = false, defaultValue = "0") int start,
                                        @RequestParam(required = false, defaultValue = "20") int limit) {
@@ -516,14 +516,14 @@ public class OttController {
         List<Collect> collects = new ArrayList<>();
         switch (contentType) {
             case ContentType.TELEPLAY:
-                collects.add(new Collect("1", ContentType.TELEPLAY, "31", "名侦探柯南", Pic.PIC_SMALL_1, null, null, null, null));
-                collects.add(new Collect("2", ContentType.TELEPLAY, "32", "全职猎人", Pic.PIC_SMALL_2, null, null, null, null));
-                collects.add(new Collect("3", ContentType.TELEPLAY, "33", "乌龙派出所", Pic.PIC_SMALL_3, null, null, null, null));
+                collects.add(new Collect("1", ContentType.TELEPLAY, "31", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, null, null, null, null));
+                collects.add(new Collect("2", ContentType.TELEPLAY, "32", "全职猎人", ContentUrl.Pic.PIC_SMALL_2, null, null, null, null));
+                collects.add(new Collect("3", ContentType.TELEPLAY, "33", "乌龙派出所", ContentUrl.Pic.PIC_SMALL_3, null, null, null, null));
                 break;
             case ContentType.VIDEO:
-                collects.add(new Collect("1", ContentType.VIDEO, "21", "霍比特人意外之旅", Pic.PIC_SMALL_6, null, null, null, null));
-                collects.add(new Collect("2", ContentType.VIDEO, "22", "指环王", Pic.PIC_SMALL_7, null, null, null, null));
-                collects.add(new Collect("3", ContentType.VIDEO, "23", "幽游白书", Pic.PIC_SMALL_4, null, null, null, null));
+                collects.add(new Collect("1", ContentType.VIDEO, "21", "霍比特人意外之旅", ContentUrl.Pic.PIC_SMALL_6, null, null, null, null));
+                collects.add(new Collect("2", ContentType.VIDEO, "22", "指环王", ContentUrl.Pic.PIC_SMALL_7, null, null, null, null));
+                collects.add(new Collect("3", ContentType.VIDEO, "23", "幽游白书", ContentUrl.Pic.PIC_SMALL_4, null, null, null, null));
                 break;
             default:
                 break;
@@ -536,7 +536,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/postRecord")
-    public PostRecordResp postRecord(@RequestParam String token,
+    public PostRecordResp postRecord(@RequestParam String userToken,
                                      @RequestParam String contentType,
                                      @RequestParam String contentTableId,
                                      @RequestParam String record) {
@@ -549,7 +549,7 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getRecords")
-    public GetRecordsResp getRecords(@RequestParam String token,
+    public GetRecordsResp getRecords(@RequestParam String userToken,
                                      @RequestParam String contentType,
                                      @RequestParam(required = false, defaultValue = "0") int start,
                                      @RequestParam(required = false, defaultValue = "20") int limit) {
@@ -557,14 +557,14 @@ public class OttController {
         List<Record> records = new ArrayList<>();
         switch (contentType) {
             case ContentType.TELEPLAY:
-                records.add(new Record("1", ContentType.TELEPLAY, "31", "6", "名侦探柯南", Pic.PIC_SMALL_1, null, null, null, null));
-                records.add(new Record("2", ContentType.TELEPLAY, "32", "2", "全职猎人", Pic.PIC_SMALL_2, null, null, null, null));
-                records.add(new Record("3", ContentType.TELEPLAY, "33", "7", "乌龙派出所", Pic.PIC_SMALL_3, null, null, null, null));
+                records.add(new Record("1", ContentType.TELEPLAY, "31", "6", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, null, null, null, null));
+                records.add(new Record("2", ContentType.TELEPLAY, "32", "2", "全职猎人", ContentUrl.Pic.PIC_SMALL_2, null, null, null, null));
+                records.add(new Record("3", ContentType.TELEPLAY, "33", "7", "乌龙派出所", ContentUrl.Pic.PIC_SMALL_3, null, null, null, null));
                 break;
             case ContentType.VIDEO:
-                records.add(new Record("1", ContentType.VIDEO, "21", "" + (25 * 60 + 17) * 1000, "霍比特人意外之旅", Pic.PIC_SMALL_6, null, null, null, null));
-                records.add(new Record("2", ContentType.VIDEO, "22", "" + (25 * 60 + 17) * 1000, "指环王", Pic.PIC_SMALL_7, null, null, null, null));
-                records.add(new Record("3", ContentType.VIDEO, "23", "" + (10 * 60 + 43) * 1000, "幽游白书", Pic.PIC_SMALL_4, null, null, null, null));
+                records.add(new Record("1", ContentType.VIDEO, "21", "" + (25 * 60 + 17) * 1000, "霍比特人意外之旅", ContentUrl.Pic.PIC_SMALL_6, null, null, null, null));
+                records.add(new Record("2", ContentType.VIDEO, "22", "" + (25 * 60 + 17) * 1000, "指环王", ContentUrl.Pic.PIC_SMALL_7, null, null, null, null));
+                records.add(new Record("3", ContentType.VIDEO, "23", "" + (10 * 60 + 43) * 1000, "幽游白书", ContentUrl.Pic.PIC_SMALL_4, null, null, null, null));
                 break;
             default:
                 break;

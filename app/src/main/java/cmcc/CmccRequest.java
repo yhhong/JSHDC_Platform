@@ -16,6 +16,7 @@ import java.util.Date;
 public class CmccRequest {
 
     private final static String SOURCE_ID = "001020";
+//    private final static String SOURCE_ID = "039002";
 
     private final static String TOKEN_CHECK_URL = "http://wap.cmpassport.com:8080/api/tokenValidate";
 
@@ -44,7 +45,7 @@ public class CmccRequest {
                 System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
             }
             cmccTokenValidateResponse = new Gson().fromJson(response.body().charStream(), CmccTokenValidateResponse.class);
-            System.out.println("TOKEN验证成功" + cmccTokenValidateResponse.toString());
+            System.out.println(cmccTokenValidateResponse);
         } else {
             throw new BusinessException(response.code(), "Unexpected code " + response);
         }
