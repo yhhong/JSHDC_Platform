@@ -16,16 +16,18 @@ public interface ContentUrl {
     String CCTV9 = "http://183.207.248.71/cntv/live1/cctv-news/cctv-news";
     String CCTV10 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-10";
 
-    String MOVE1 = "http://183.207.248.71/cntv/vod/p_2677288/m_2677288";//生化危机
-    String MOVE2 = "http://183.207.248.71/cntv/vod/p_9563622/m_647214456";//古墓丽影
-    String MOVE3 = "http://183.207.248.71/cntv/vod/p_14257684/m_652494362";//像素大战
-    String MOVE4 = "http://183.207.248.71/cntv/vod/p_10882913/m_648980087";//地牢围攻
-    String MOVE5 = "http://183.207.248.71/cntv/vod/p_10045182/m_647807145";//超能特工队
-    String MOVE6 = "http://183.207.248.71/cntv/vod/p_14339034/m_652579113";//头脑特工队
-    String MOVE7 = "http://183.207.248.71/cntv/vod/p_10280829/m_648251535";//熊出没之雪岭熊风
-    String MOVE8 = "http://183.207.248.71/cntv/vod/p_15110162/m_653393479";//63_芈月传
-    String MOVE9 = "http://183.207.248.71/cntv/vod/p_15097826/m_653379312";//十七岁
-    String MOVE10 = "http://183.207.248.71/cntv/vod/p_15097823/m_653379309";//解救吾先生
+    String MOVE1 = "http://183.207.248.71/cntv/vod/p_13669210/m_651809660";//[HD]猎人猎物
+    String MOVE2 = "http://183.207.248.71/cntv/vod/p_137467/m_137467";//美少年演绎天鹅舞 胖猎人斗智斗勇
+    String MOVE3 = "http://183.207.248.71/cntv/vod/p_139612/m_139612";//美少年演绎天鹅舞 胖猎人斗智斗勇
+    String MOVE4 = "http://183.207.248.71/cntv/vod/p_14400788/m_652644401";//美少年演绎天鹅舞 胖猎人斗智斗勇
+    String MOVE5 = "http://183.207.248.71/cntv/vod/p_145112/m_145112"; //荒野猎人（美国）
+    String MOVE6 = "http://183.207.248.71/cntv/vod/p_2761715/m_2700365";//[HD]78＿新全职猎人
+    String MOVE7 = "http://183.207.248.71/cntv/vod/p_2761716/m_2700366";//[HD]79＿新全职猎人
+    String MOVE8 = " http://183.207.248.71/cntv/vod/p_2761717/m_2700367";//[HD]80＿新全职猎人
+    String MOVE9 = "http://183.207.248.71/cntv/vod/p_2761718/m_2700368"; //[HD]81＿新全职猎人
+    String MOVE10 = "http://183.207.248.71/cntv/vod/p_2761719/m_2700369"; //[HD]82＿新全职猎人
+
+
 
     /**
      * Created by yinghuihong on 16/1/26.
