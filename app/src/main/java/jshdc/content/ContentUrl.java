@@ -6,15 +6,15 @@ package jshdc.content;
 public interface ContentUrl {
 
     String CCTV1 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-1";
-    String CCTV2 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-2";
-    String CCTV3 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-3";
-    String CCTV4 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-4";
-    String CCTV5 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-5";
-    String CCTV6 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-6";
-    String CCTV7 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-7";
-    String CCTV8 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-8";
+    String CCTV2 = "http://183.207.248.71/cntv/live1/cctv-2/cctv-2";
+    String CCTV3 = "http://183.207.248.71/cntv/live1/cctv-3/cctv-3";
+    String CCTV4 = "http://183.207.248.71/cntv/live1/cctv-4/cctv-4";
+    String CCTV5 = "http://183.207.248.71/cntv/live1/cctv-5/cctv-5";
+    String CCTV6 = "http://183.207.248.71/cntv/live1/cctv-6/cctv-6";
+    String CCTV7 = "http://183.207.248.71/cntv/live1/cctv-7/cctv-7";
+    String CCTV8 = "http://183.207.248.71/cntv/live1/cctv-8/cctv-8";
     String CCTV9 = "http://183.207.248.71/cntv/live1/cctv-news/cctv-news";
-    String CCTV10 = "http://183.207.248.71/cntv/live1/cctv-1/cctv-10";
+    String CCTV10 = "http://183.207.248.71/cntv/live1/cctv-10/cctv-10";
 
     String MOVE1 = "http://183.207.248.71/cntv/vod/p_13669210/m_651809660";//[HD]猎人猎物
     String MOVE2 = "http://183.207.248.71/cntv/vod/p_137467/m_137467";//美少年演绎天鹅舞 胖猎人斗智斗勇
@@ -28,6 +28,19 @@ public interface ContentUrl {
     String MOVE10 = "http://183.207.248.71/cntv/vod/p_2761719/m_2700369"; //[HD]82＿新全职猎人
 
 
+    String CCTV1_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-1/cctv-1";
+    String CCTV2_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-2/cctv-2";
+    String CCTV3_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-3/cctv-3";
+    String CCTV4_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-4/cctv-4";
+    String CCTV5_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-5/cctv-5";
+    String CCTV6_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-6/cctv-6";
+    String CCTV7_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-7/cctv-7";
+    String CCTV8_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-8/cctv-8";
+    String CCTV9_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-news/cctv-news";
+    String CCTV10_LOOK_BACK = "http://183.207.248.71/cntv/lookback/cctv-10/cctv-10";
+
+    String CCTV1_LOOK_BACK_PROGRAM1 = "http://183.207.248.71/cntv/lookback/cctv-1/cctv-1?PlaySeek=20160420180000-20160420190000";
+    String CCTV1_LOOK_BACK_PROGRAM2 = "http://183.207.248.71/cntv/lookback/cctv-1/cctv-1?PlaySeek=20160420190000-20160420193500";
 
     /**
      * Created by yinghuihong on 16/1/26.

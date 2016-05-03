@@ -8,19 +8,28 @@ public class Program {
 
     public String id;
     public String name;
+    public String url;
     public String showTime;
+    public long totalTime;
     /**
-     * 直播/回看
+     * 回看=1,直播=2,预告=3
      */
     public String playType;
     public String description;
+    /**
+     * 所属频道ID
+     */
+    public String channelId;
 
-    public Program(String id, String name, String showTime, String playType, String description) {
+    public Program(String id, String name, String url, String showTime, long totalTime, String playType, String description, String channelId) {
         this.id = id;
         this.name = name;
+        this.url = url;
         this.showTime = showTime;
+        this.totalTime = totalTime;
         this.playType = playType;
         this.description = description;
+        this.channelId = channelId;
     }
 
     @Override
@@ -28,9 +37,12 @@ public class Program {
         return "Program{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 ", showTime='" + showTime + '\'' +
+                ", totalTime=" + totalTime +
                 ", playType='" + playType + '\'' +
                 ", description='" + description + '\'' +
+                ", channelId='" + channelId + '\'' +
                 '}';
     }
 }

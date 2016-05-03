@@ -2,17 +2,16 @@ package jshdc.controller;
 
 import jshdc.bean.*;
 import jshdc.bean.response.ott.*;
+import jshdc.content.ContentUrl;
 import jshdc.type.ContentType;
 import jshdc.type.TemplateType;
 import jshdc.type.ViewType;
-import jshdc.content.ContentUrl;
+import jshdc.util.DateUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * OTT视频
@@ -72,8 +71,8 @@ public class OttController {
                 floors.add(new Floor("0", null, "排序", TemplateType.CAROUSEL, null, null, null, null, contents1, null));
 
                 List<Content> contents2 = new ArrayList<>();
-                contents2.add(new Content("5", "[CCTV5]世界杯战况", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "频道ID", ContentUrl.CCTV5, "9.6", "10000次"));
-                contents2.add(new Content("6", "[江苏卫视]舌尖上的中国", ContentUrl.Pic.PIC_PROGRAM_3, ContentType.PROGRAM, "频道ID", ContentUrl.CCTV10, "9.6", "2000次"));
+                contents2.add(new Content("5", "[CCTV5]世界杯战况", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "1", ContentUrl.CCTV1_LOOK_BACK_PROGRAM1, "9.6", "10000次"));
+                contents2.add(new Content("6", "[江苏卫视]舌尖上的中国", ContentUrl.Pic.PIC_PROGRAM_3, ContentType.PROGRAM, "2", ContentUrl.CCTV1_LOOK_BACK_PROGRAM2, "9.6", "2000次"));
                 floors.add(new Floor("0", "直播", "排序", TemplateType.COUNT_TWO, ViewType.LIVE_MAIN, null, "CCTV5/江苏卫视", null, contents2, null));
 
                 List<Content> contents3 = new ArrayList<>();
@@ -83,15 +82,15 @@ public class OttController {
                 break;
             case "1":
                 List<Content> liveContents1 = new ArrayList<>();
-                liveContents1.add(new Content("1", "飞屋环游记", ContentUrl.Pic.PIC_BIG_1, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV1, null, null));
-                liveContents1.add(new Content("2", "叛逆的鲁路修第110话", ContentUrl.Pic.PIC_BIG_2, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV2, null, null));
-                liveContents1.add(new Content("3", "少年派的奇幻漂流", ContentUrl.Pic.PIC_BIG_3, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV3, null, null));
-                liveContents1.add(new Content("4", "海贼王第710话", ContentUrl.Pic.PIC_BIG_4, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV4, null, null));
+                liveContents1.add(new Content("1", "飞屋环游记", ContentUrl.Pic.PIC_BIG_1, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV1_LOOK_BACK_PROGRAM1, null, null));
+                liveContents1.add(new Content("2", "叛逆的鲁路修第110话", ContentUrl.Pic.PIC_BIG_2, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV1_LOOK_BACK_PROGRAM2, null, null));
+                liveContents1.add(new Content("3", "少年派的奇幻漂流", ContentUrl.Pic.PIC_BIG_3, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV1_LOOK_BACK_PROGRAM1, null, null));
+                liveContents1.add(new Content("4", "海贼王第710话", ContentUrl.Pic.PIC_BIG_4, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV1_LOOK_BACK_PROGRAM1, null, null));
                 floors.add(new Floor("0", null, "排序", TemplateType.CAROUSEL, null, null, null, null, liveContents1, null));
 
                 List<Content> liveContents2 = new ArrayList<>();
-                liveContents2.add(new Content("9", "巴西世界杯", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV6, "9.6", null));
-                liveContents2.add(new Content("10", "新闻30分", ContentUrl.Pic.PIC_PROGRAM_2, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV9, "9.6", null));
+                liveContents2.add(new Content("9", "巴西世界杯", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV1_LOOK_BACK_PROGRAM1, "9.6", null));
+                liveContents2.add(new Content("10", "新闻30分", ContentUrl.Pic.PIC_PROGRAM_2, ContentType.PROGRAM, "节目ID", ContentUrl.CCTV1_LOOK_BACK_PROGRAM2, "9.6", null));
                 floors.add(new Floor("0", "精彩回看", "排序", TemplateType.COUNT_TWO, ViewType.LIVE_PROGRAMME, null, "所有回看", null, liveContents2, null));
 
                 List<Content> liveContents3 = new ArrayList<>();
@@ -204,13 +203,13 @@ public class OttController {
         Program program;
         switch (programId) {
             case "1":
-                program = new Program("1", "世界杯战况", "11:00", "回看", "2014年世界杯");
+                program = new Program("1", "世界杯战况", ContentUrl.CCTV1_LOOK_BACK + "?PlaySeek=" + "20160420180000" + "-" + "20160420190000", "18:00", 60 * 60 * 1000, "回看", "2014年世界杯", "1");
                 break;
             case "2":
-                program = new Program("2", "新闻30分", "12:00", "回看", "CCTV9新闻台正午播放");
+                program = new Program("2", "新闻30分", ContentUrl.CCTV1_LOOK_BACK + "?PlaySeek=" + "20160420190000" + "-" + "20160420193500", "20160420190000", 35 * 60 * 1000, "回看", "CCTV9新闻台正午播放", "1");
                 break;
             default:
-                program = new Program("1", "世界杯战况", "11:00", "回看", "2014年世界杯");
+                program = new Program("1", "世界杯战况", ContentUrl.CCTV1_LOOK_BACK + "?PlaySeek=" + "20160420180000" + "-" + "20160420190000", "18:00", 60 * 60 * 1000, "回看", "2014年世界杯", "1");
                 break;
         }
         resp.program = program;
@@ -409,32 +408,85 @@ public class OttController {
         return resp;
     }
 
+    /**
+     * 每个小时作为一个节目,生成节目列表
+     *
+     * @param channelUrl 频道地址
+     * @param startTime
+     * @param endTime
+     * @return
+     */
+    private List<Program> providePrograms(String channelUrl, long startTime, long endTime, String channelId) {
+        List<Program> programs = new ArrayList<>();
+
+        Calendar calEnd = Calendar.getInstance();
+        calEnd.setTime(new Date(endTime));
+
+        Calendar calStart = Calendar.getInstance();
+        calStart.setTime(new Date(startTime));
+
+        while (calStart.getTimeInMillis() < calEnd.getTimeInMillis()) {
+            long start = calStart.getTimeInMillis();
+            calStart.add(Calendar.HOUR_OF_DAY, 1);
+            long end = calStart.getTimeInMillis();
+            String playType;
+            if (end < System.currentTimeMillis()) {
+                playType = "1";// 回看
+            } else if (start < System.currentTimeMillis()) {
+                playType = "2";// 直播
+            } else {
+                playType = "3";// 预告
+            }
+            Program program = new Program(UUID.randomUUID().toString(), "节目-" + DateUtil.longToString3(end),
+                    channelUrl + "?PlaySeek=" + DateUtil.longToString(start) + "-" + DateUtil.longToString(end),
+                    DateUtil.longToString2(start), end - start, playType, null, channelId);
+            System.out.println("START " + calStart.getTimeInMillis() + ", END " + calEnd.getTimeInMillis());
+            programs.add(program);
+        }
+        return programs;
+    }
+
     @RequestMapping(value = "/getChannelPrograms")
     public GetProgramsResp getChannelPrograms(@RequestParam String userToken,
                                               @RequestParam String channelId,
                                               @RequestParam long startTime,
                                               @RequestParam long endTime) {
+        System.out.println(userToken + "," + channelId + "," + startTime + "," + endTime);
         GetProgramsResp resp = new GetProgramsResp();
         List<Program> programs = new ArrayList<>();
         switch (channelId) {
             case "1":
+                programs.addAll(providePrograms(ContentUrl.CCTV1_LOOK_BACK, startTime, endTime, channelId));
+                break;
             case "2":
+                programs.addAll(providePrograms(ContentUrl.CCTV2_LOOK_BACK, startTime, endTime, channelId));
+                break;
             case "3":
+                programs.addAll(providePrograms(ContentUrl.CCTV3_LOOK_BACK, startTime, endTime, channelId));
+                break;
             case "4":
+                programs.addAll(providePrograms(ContentUrl.CCTV4_LOOK_BACK, startTime, endTime, channelId));
+                break;
             case "5":
+                programs.addAll(providePrograms(ContentUrl.CCTV5_LOOK_BACK, startTime, endTime, channelId));
+                break;
             case "6":
+                programs.addAll(providePrograms(ContentUrl.CCTV6_LOOK_BACK, startTime, endTime, channelId));
+                break;
             case "7":
+                programs.addAll(providePrograms(ContentUrl.CCTV7_LOOK_BACK, startTime, endTime, channelId));
+                break;
             case "8":
+                programs.addAll(providePrograms(ContentUrl.CCTV8_LOOK_BACK, startTime, endTime, channelId));
+                break;
             case "9":
+                programs.addAll(providePrograms(ContentUrl.CCTV9_LOOK_BACK, startTime, endTime, channelId));
+                break;
             case "10":
+                programs.addAll(providePrograms(ContentUrl.CCTV10_LOOK_BACK, startTime, endTime, channelId));
+                break;
             default:
-                programs.add(new Program("1", "等着我", "10:00", "回看", null));
-                programs.add(new Program("2", "午间新闻", "11:00", "回看", null));
-                programs.add(new Program("3", "2016等着我特别节目", "12:00", "直播", null));
-                programs.add(new Program("4", "电视剧:问家人", "13:00", "直播", null));
-                programs.add(new Program("5", "我爱我家", "14:00", "直播", null));
-                programs.add(new Program("6", "焦点访谈", "15:00", "直播", null));
-                programs.add(new Program("7", "西游记", "16:00", "直播", null));
+                programs.addAll(providePrograms(ContentUrl.CCTV1_LOOK_BACK, startTime, endTime, channelId));
                 break;
         }
         resp.programs = programs;
