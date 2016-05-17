@@ -1,7 +1,5 @@
 package jshdc.bean.response.ott;
 
-import jshdc.bean.Channel;
-
 /**
  * 获取频道详情
  * Created by yinghuihong on 16/1/11.

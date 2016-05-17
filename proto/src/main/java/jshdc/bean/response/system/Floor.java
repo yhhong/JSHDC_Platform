@@ -1,4 +1,6 @@
-package jshdc.bean;
+package jshdc.bean.response.system;
+
+import jshdc.bean.response.ott.Message;
 
 import java.util.List;
 

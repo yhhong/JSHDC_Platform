@@ -1,14 +1,12 @@
-package jshdc.bean.response.ott;
-
-import jshdc.bean.Content;
+package jshdc.bean.response.system;
 
 import java.util.List;
 
 /**
- * 获取关联推荐
- * Created by yinghuihong on 16/1/11.
+ * 获取(楼层下的更多)内容列表
+ * Created by yinghuihong on 16/1/20.
  */
-public class GetRecommendContentsResp {
+public class GetContentsResp {
 
     public int result;
     public String message;
@@ -16,7 +14,7 @@ public class GetRecommendContentsResp {
 
     @Override
     public String toString() {
-        return "GetRecommendContentsResp{" +
+        return "GetContentsResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
                 ", contents=" + contents +

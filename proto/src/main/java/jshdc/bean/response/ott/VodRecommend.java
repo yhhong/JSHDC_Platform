@@ -1,27 +1,28 @@
-package jshdc.bean;
+package jshdc.bean.response.ott;
 
 /**
- * 视频
- * Created by yinghuihong on 16/1/11.
+ * 点播推荐,返回视频or电视剧的部分元素
+ * Created by yinghuihong on 16/5/16.
  */
-public class Video {
+public class VodRecommend {
+
     public String id;
-    public String playId;
+    public String videoId;
+    public String teleplayId;
     public String name;
     public String poster;
     public String director;
     public String actors;
     public String description;
     public String score;
-    public String showTime;
+    public long showTime;
     public String playCount;
-    public String time;
-    public boolean collected;
 
-    public Video(String id, String playId, String name, String poster, String director, String actors,
-                 String description, String score, String showTime, String playCount, String time, boolean collected) {
+    public VodRecommend(String id, String videoId, String teleplayId, String name, String poster, String director,
+                        String actors, String description, String score, long showTime, String playCount) {
         this.id = id;
-        this.playId = playId;
+        this.videoId = videoId;
+        this.teleplayId = teleplayId;
         this.name = name;
         this.poster = poster;
         this.director = director;
@@ -30,25 +31,22 @@ public class Video {
         this.score = score;
         this.showTime = showTime;
         this.playCount = playCount;
-        this.time = time;
-        this.collected = collected;
     }
 
     @Override
     public String toString() {
-        return "Video{" +
+        return "VodRecommend{" +
                 "id='" + id + '\'' +
-                ", playId='" + playId + '\'' +
+                ", videoId='" + videoId + '\'' +
+                ", teleplayId='" + teleplayId + '\'' +
                 ", name='" + name + '\'' +
                 ", poster='" + poster + '\'' +
                 ", director='" + director + '\'' +
                 ", actors='" + actors + '\'' +
                 ", description='" + description + '\'' +
                 ", score='" + score + '\'' +
-                ", showTime='" + showTime + '\'' +
+                ", showTime=" + showTime +
                 ", playCount='" + playCount + '\'' +
-                ", time='" + time + '\'' +
-                ", collected=" + collected +
                 '}';
     }
 }

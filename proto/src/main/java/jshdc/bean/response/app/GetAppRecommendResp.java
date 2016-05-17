@@ -1,23 +1,22 @@
-package jshdc.bean.response.ott;
+package jshdc.bean.response.app;
 
 import java.util.List;
 
 /**
- * 获取频道列表
- * Created by yinghuihong on 16/1/11.
+ * Created by yinghuihong on 16/5/16.
  */
-public class GetChannelsResp {
+public class GetAppRecommendResp {
 
     public int result;
     public String message;
-    public List<Channel> channels;
+    public List<AppInfo> appInfos;
 
     @Override
     public String toString() {
-        return "GetChannelsResp{" +
+        return "GetAppRecommendResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
-                ", channels=" + channels +
+                ", appInfos=" + appInfos +
                 '}';
     }
 }

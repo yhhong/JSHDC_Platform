@@ -1,4 +1,4 @@
-package jshdc.bean;
+package jshdc.bean.response.ott;
 
 /**
  * 运营消息

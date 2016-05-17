@@ -76,5 +76,20 @@ public interface ContentUrl {
         String PIC_PROGRAM_4 = "http://img0.imgtn.bdimg.com/it/u=4292409538,4217964474&fm=11&gp=0.jpg";
         String PIC_PROGRAM_5 = "http://img4.imgtn.bdimg.com/it/u=4254693729,2326184615&fm=21&gp=0.jpg";
 
+
+        String PIC_APP_1 = "http://img.wdjimg.com/mms/icon/v1/e/eb/ddd6303834b763869c0e80c92e905ebe_256_256.png";
+        String PIC_APP_2 = "http://img.wdjimg.com/mms/icon/v1/0/41/d28c4b9b9d463cd79d02f8913c671410_256_256.png";
+        String PIC_APP_3 = "http://img.wdjimg.com/mms/icon/v1/0/76/ada9d27294f3e3cf58d53dc5e0e72760_256_256.png";
+        String PIC_APP_4 = "http://img.wdjimg.com/mms/icon/v1/6/73/d51856418ca1e47ffb5815d2bf085736_256_256.png";
+        String PIC_APP_5 = "http://img.wdjimg.com/mms/icon/v1/b/8a/2d945e698e9dfb0f61145620cb9cf8ab_256_256.png";
+        String PIC_APP_6 = "http://img.wdjimg.com/mms/icon/v1/7/ed/15891412e00a12fdec0bbe290b42ced7_256_256.png";
+
+        String PIC_APP_BIG_1 = "http://img.wdjimg.com/mms/screenshot/3/b2/c9359c9fd102f6dc7e85c439906d8b23_320_535.jpeg";
+        String PIC_APP_BIG_2 = "http://img.wdjimg.com/mms/screenshot/a/b9/23ccd1b8f1a4ccbbedffcb488cf8fb9a_320_535.jpeg";
+        String PIC_APP_BIG_3 = "http://img.wdjimg.com/mms/screenshot/0/80/2e1963f2316c51e987fdb7a25406e800_320_534.jpeg";
+        String PIC_APP_BIG_4 = "http://img.wdjimg.com/mms/screenshot/e/2a/f00c144986be0c13c4ea4e98ef1f52ae_320_534.jpeg";
+        String PIC_APP_BIG_5 = "http://img.wdjimg.com/mms/screenshot/b/85/0ca057d7799dd335bef430b0d374185b_320_534.jpeg";
+        String PIC_APP_BIG_6 = "http://img.wdjimg.com/mms/screenshot/c/be/d2aff1dd8ba9de4175bde94eb04c4bec_320_535.jpeg";
+
     }
 }

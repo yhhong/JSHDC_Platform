@@ -1,4 +1,4 @@
-package jshdc.bean;
+package jshdc.bean.response.system;
 
 /**
  * 栏目
@@ -7,11 +7,13 @@ package jshdc.bean;
 public class Column {
     public String id;
     public String name;
-    public String status;
+    public int status;
+    public String pId;
 
-    public Column(String id, String name) {
+    public Column(String id, String name, String pId) {
         this.id = id;
         this.name = name;
+        this.pId = pId;
     }
 
     @Override
@@ -20,6 +22,7 @@ public class Column {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", status='" + status + '\'' +
+                ", pId='" + pId + '\'' +
                 '}';
     }
 }

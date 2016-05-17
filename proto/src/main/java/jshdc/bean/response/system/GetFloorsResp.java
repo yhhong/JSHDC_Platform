@@ -1,25 +1,23 @@
-package jshdc.bean.response.ott;
-
-import jshdc.bean.Column;
+package jshdc.bean.response.system;
 
 import java.util.List;
 
 /**
- * 获取栏目列表
- * Created by yinghuihong on 16/1/8.
+ * Created by yinghuihong on 16/1/11.
  */
-public class GetColumnsResp {
+public class GetFloorsResp {
+
     public int result;
     public String message;
-    public List<Column> columns;
+    public List<Floor> floors;
     public long lastModifyTime;
 
     @Override
     public String toString() {
-        return "GetColumnsResp{" +
+        return "GetFloorsResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
-                ", columns=" + columns +
+                ", floors=" + floors +
                 ", lastModifyTime=" + lastModifyTime +
                 '}';
     }

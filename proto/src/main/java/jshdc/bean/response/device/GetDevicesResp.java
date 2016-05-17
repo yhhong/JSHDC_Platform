@@ -1,24 +1,22 @@
-package jshdc.bean.response.ott;
-
-import jshdc.bean.Content;
+package jshdc.bean.response.device;
 
 import java.util.List;
 
 /**
- * Created by yinghuihong on 16/1/11.
+ * Created by yinghuihong on 16/5/16.
  */
-public class SearchResp {
+public class GetDevicesResp {
 
     public int result;
     public String message;
-    public List<Content> contents;
+    public List<Device> devices;
 
     @Override
     public String toString() {
-        return "SearchResp{" +
+        return "GetDevicesResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
-                ", contents=" + contents +
+                ", devices=" + devices +
                 '}';
     }
 }

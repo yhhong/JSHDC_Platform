@@ -1,26 +1,22 @@
 package jshdc.bean.response.ott;
 
-import jshdc.bean.Collect;
-import jshdc.bean.Content;
-import jshdc.bean.Video;
-
 import java.util.List;
 
 /**
- * 获取收藏列表
+ * 获取播放记录列表
  * Created by yinghuihong on 16/1/11.
  */
-public class GetCollectsResp {
+public class GetVodPlayRecordsResp {
     public int result;
     public String message;
-    public List<Collect> collects;
+    public List<VodPlayRecord> vodPlayRecords;
 
     @Override
     public String toString() {
-        return "GetCollectsResp{" +
+        return "GetVodPlayRecordsResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
-                ", collects=" + collects +
+                ", vodPlayRecords=" + vodPlayRecords +
                 '}';
     }
 }

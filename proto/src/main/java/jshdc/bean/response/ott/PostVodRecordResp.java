@@ -1,26 +1,18 @@
 package jshdc.bean.response.ott;
 
-import jshdc.bean.Floor;
-
-import java.util.List;
-
 /**
+ * 记录新增
  * Created by yinghuihong on 16/1/11.
  */
-public class GetFloorsResp {
-
+public class PostVodRecordResp {
     public int result;
     public String message;
-    public List<Floor> floors;
-    public long lastModifyTime;
 
     @Override
     public String toString() {
-        return "GetFloorsResp{" +
+        return "PostVodRecordResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
-                ", floors=" + floors +
-                ", lastModifyTime=" + lastModifyTime +
                 '}';
     }
 }

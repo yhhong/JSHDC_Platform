@@ -21,4 +21,6 @@ public interface TemplateType {
      * 数量为4的模板
      */
     String COUNT_FOUR = "COUNT_FOUR";
+
+    String TWO_THREE = "THREE_TWO";
 }

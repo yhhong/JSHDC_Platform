@@ -1,21 +1,22 @@
 package jshdc.bean.response.ott;
 
+import java.util.List;
+
 /**
- * 获取电视剧详情
+ * 获取收藏列表
  * Created by yinghuihong on 16/1/11.
  */
-public class GetTeleplayDetailResp {
-
+public class GetVodCollectsResp {
     public int result;
     public String message;
-    public Teleplay teleplay;
+    public List<VodCollect> vodCollects;
 
     @Override
     public String toString() {
-        return "GetTeleplayDetailResp{" +
+        return "GetVodCollectsResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
-                ", teleplay=" + teleplay +
+                ", vodCollects=" + vodCollects +
                 '}';
     }
 }

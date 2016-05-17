@@ -1,7 +1,5 @@
 package jshdc.bean.response.ott;
 
-import jshdc.bean.Program;
-
 import java.util.List;
 
 /**

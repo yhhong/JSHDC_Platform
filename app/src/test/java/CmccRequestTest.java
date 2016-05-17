@@ -1,13 +1,4 @@
-import cmcc.BusinessException;
-import cmcc.CmccRequest;
-import cmcc.CmccTokenValidateResponse;
-import jshdc.bean.Program;
-import jshdc.util.CalendarUtil;
-import jshdc.util.DateUtil;
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.*;
 
 /**
  * Created by yinghuihong on 16/3/4.

@@ -1,4 +1,4 @@
-package jshdc.bean;
+package jshdc.bean.response.ott;
 
 /**
  * 节目
@@ -9,7 +9,7 @@ public class Program {
     public String id;
     public String name;
     public String url;
-    public String showTime;
+    public long showTime;
     public long totalTime;
     /**
      * 回看=1,直播=2,预告=3
@@ -21,7 +21,7 @@ public class Program {
      */
     public String channelId;
 
-    public Program(String id, String name, String url, String showTime, long totalTime, String playType, String description, String channelId) {
+    public Program(String id, String name, String url, long showTime, long totalTime, String playType, String description, String channelId) {
         this.id = id;
         this.name = name;
         this.url = url;

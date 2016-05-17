@@ -1,18 +1,20 @@
-package jshdc.bean.response.ott;
+package jshdc.bean.response.app;
 
 /**
- * 删除收藏内容
- * Created by yinghuihong on 16/1/11.
+ * Created by yinghuihong on 16/5/16.
  */
-public class DeleteCollectResp {
+public class GetAppDetailResp {
+
     public int result;
     public String message;
+    public AppInfo appInfo;
 
     @Override
     public String toString() {
-        return "DeleteCollectResp{" +
+        return "GetAppDetailResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
+                ", appInfo=" + appInfo +
                 '}';
     }
 }

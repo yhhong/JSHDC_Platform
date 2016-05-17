@@ -1,4 +1,4 @@
-//package jshdc.bean;
+//package jshdc.bean.response.common;
 //
 ///**
 // * Created by yinghuihong on 16/1/26.
