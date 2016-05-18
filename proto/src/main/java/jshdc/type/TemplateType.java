@@ -6,21 +6,36 @@ package jshdc.type;
  */
 public interface TemplateType {
     /**
-     * 轮播模板
+     * 通用轮播模板
      */
-    String CAROUSEL = "CAROUSEL";
-    /**
-     * 数量为2的模板
-     */
-    String COUNT_TWO = "COUNT_TWO";
-    /**
-     * 数量为3的模板
-     */
-    String COUNT_THREE = "COUNT_THREE";
-    /**
-     * 数量为4的模板
-     */
-    String COUNT_FOUR = "COUNT_FOUR";
+    String COMMON_CAROUSEL = "COMMON_CAROUSEL";
 
-    String TWO_THREE = "THREE_TWO";
+    /**
+     * OTT模块 - 数量模糊的模板(搜索场景)
+     */
+    String OTT_BLUR = "OTT_BLUR";
+    /**
+     * OTT模块 - 一行两列的模板
+     */
+    String OTT_ONE_TWO = "OTT_ONE_TWO";
+    /**
+     * OTT模块 - 一行三列的模板
+     */
+    String OTT_ONE_THREE = "OTT_ONE_THREE";
+    /**
+     * OTT模块 - 一行四列的模板
+     */
+    String OTT_ONE_FOUR = "OTT_ONE_FOUR";
+    /**
+     * 应用模块 - 数量模糊的模板(搜索场景)
+     */
+    String APP_BLUR = "APP_BLUR";
+    /**
+     * 应用模块 - 两行三列的模板
+     */
+    String APP_TWO_THREE = "APP_TWO_THREE";
+    /**
+     * 应用模块 - 三行一列的模板
+     */
+    String APP_THREE_ONE = "APP_THREE_ONE";
 }

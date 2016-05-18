@@ -455,9 +455,9 @@ public class OttController {
                                                      @RequestParam String teleplayId) {
         GetVodRecommendsResp resp = new GetVodRecommendsResp();
         List<VodRecommend> vodRecommends = new ArrayList<>();
-        vodRecommends.add(new VodRecommend("1", "22", null, "指环王", ContentUrl.Pic.PIC_SMALL_7, "directors", "actors", "description", "8.1", DateUtil.stringToDate("20110101000000").getTime(), ""));
-        vodRecommends.add(new VodRecommend("2", "11", "31", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, "directors", "actors", "description", "9.1", DateUtil.stringToDate("20010501000000").getTime(), ""));
-        vodRecommends.add(new VodRecommend("3", "21", null, "霍比特人意外之旅", ContentUrl.Pic.PIC_SMALL_6, "directors", "actors", "description", "8.3", DateUtil.stringToDate("20130901000000").getTime(), ""));
+        vodRecommends.add(new VodRecommend("1", "22", null, "指环王", ContentUrl.Pic.PIC_SMALL_7, "directors", "actors", "description", "8.1", DateUtil.stringToDate("20110101000000").getTime(), "10000"));
+        vodRecommends.add(new VodRecommend("2", "11", "31", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, "directors", "actors", "description", "9.1", DateUtil.stringToDate("20010501000000").getTime(), "9999"));
+        vodRecommends.add(new VodRecommend("3", "21", null, "霍比特人意外之旅", ContentUrl.Pic.PIC_SMALL_6, "directors", "actors", "description", "8.3", DateUtil.stringToDate("20130901000000").getTime(), "3242431"));
         resp.vodRecommends = vodRecommends;
         resp.result = 0;
         resp.message = "success";

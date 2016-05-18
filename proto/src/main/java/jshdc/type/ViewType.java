@@ -6,7 +6,10 @@ package jshdc.type;
 public interface ViewType {
     String LIVE_MAIN = "LIVE_MAIN";
     String LIVE_PROGRAMME = "LIVE_PROGRAMME";
-    String LIVE_PLAYER = "LIVE_PLAYER";
     String VOD_MAIN = "VOD_MAIN";
-    String VOD_PLAYER = "VOD_PLAYER";
+    String APP_MAIN = "APP_MAIN";
+    /**
+     * 客户端使用
+     */
+    String APP_LIST = "APP_LIST";
 }
