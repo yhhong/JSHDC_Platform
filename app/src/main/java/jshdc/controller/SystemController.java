@@ -108,7 +108,7 @@ public class SystemController {
                 List<Content> contents4 = new ArrayList<>();
                 contents4.add(new Content("9", "微博", ContentUrl.Pic.PIC_APP_2, ContentType.APP, "2", null, null));
                 contents4.add(new Content("10", "淘宝", ContentUrl.Pic.PIC_APP_3, ContentType.APP, "3", null, null));
-                contents4.add(new Content("11", "QQ空间", ContentUrl.Pic.PIC_APP_5, ContentType.APP, "5", null, null));
+                contents4.add(new Content("11", "QQ空间", ContentUrl.Pic.PIC_APP_4, ContentType.APP, "4", null, null));
                 contents4.add(new Content("12", "微信", ContentUrl.Pic.PIC_APP_6, ContentType.APP, "6", null, null));
                 floors.add(new Floor("0", "应用", "排序", TemplateType.OTT_ONE_FOUR, ViewType.APP_MAIN, "更多", null, contents4, null));
                 break;
