@@ -19,10 +19,11 @@ public class VodCollect {
      */
     public String totalCount;
     public String updateCount;
+    public String playCount;
     public long generateTime;
 
     public VodCollect(String id, String videoId, String teleplayId, String name, String poster, long totalTime,
-                      String totalCount, String updateCount, long generateTime) {
+                      String totalCount, String updateCount, String playCount, long generateTime) {
         this.id = id;
         this.videoId = videoId;
         this.teleplayId = teleplayId;
@@ -31,6 +32,7 @@ public class VodCollect {
         this.totalTime = totalTime;
         this.totalCount = totalCount;
         this.updateCount = updateCount;
+        this.playCount = playCount;
         this.generateTime = generateTime;
     }
 
@@ -42,10 +44,11 @@ public class VodCollect {
                 ", teleplayId='" + teleplayId + '\'' +
                 ", name='" + name + '\'' +
                 ", poster='" + poster + '\'' +
-                ", totalTime='" + totalTime + '\'' +
+                ", totalTime=" + totalTime +
                 ", totalCount='" + totalCount + '\'' +
                 ", updateCount='" + updateCount + '\'' +
-                ", generateTime='" + generateTime + '\'' +
+                ", playCount='" + playCount + '\'' +
+                ", generateTime=" + generateTime +
                 '}';
     }
 }

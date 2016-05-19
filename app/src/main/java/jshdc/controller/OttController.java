@@ -405,12 +405,12 @@ public class OttController {
                                           @RequestParam(required = false, defaultValue = "20") int limit) {
         GetVodCollectsResp resp = new GetVodCollectsResp();
         List<VodCollect> vodCollects = new ArrayList<>();
-        vodCollects.add(new VodCollect("1", null, "31", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, 0, "24", "24", DateUtil.stringToDate("20010501000000").getTime()));
-        vodCollects.add(new VodCollect("2", null, "32", "全职猎人", ContentUrl.Pic.PIC_SMALL_2, 0, "30", "30", DateUtil.stringToDate("20120501000000").getTime()));
-        vodCollects.add(new VodCollect("3", null, "33", "乌龙派出所", ContentUrl.Pic.PIC_SMALL_3, 0, "100", "89", DateUtil.stringToDate("20130501000000").getTime()));
-        vodCollects.add(new VodCollect("1", "21", null, "霍比特人意外之旅", ContentUrl.Pic.PIC_SMALL_6, 30 * 60 + 10, null, null, DateUtil.stringToDate("20040501000000").getTime()));
-        vodCollects.add(new VodCollect("2", "22", null, "指环王", ContentUrl.Pic.PIC_SMALL_7, 40 * 60 + 59, null, null, DateUtil.stringToDate("20050501000000").getTime()));
-        vodCollects.add(new VodCollect("3", "23", null, "幽游白书", ContentUrl.Pic.PIC_SMALL_4, 45 * 60, null, null, DateUtil.stringToDate("20060501000000").getTime()));
+        vodCollects.add(new VodCollect("1", null, "31", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, 0, "24", "24", "1099999", DateUtil.stringToDate("20010501000000").getTime()));
+        vodCollects.add(new VodCollect("2", null, "32", "全职猎人", ContentUrl.Pic.PIC_SMALL_2, 0, "30", "30", "4234141", DateUtil.stringToDate("20120501000000").getTime()));
+        vodCollects.add(new VodCollect("3", null, "33", "乌龙派出所", ContentUrl.Pic.PIC_SMALL_3, 0, "100", "89", "425225511", DateUtil.stringToDate("20130501000000").getTime()));
+        vodCollects.add(new VodCollect("1", "21", null, "霍比特人意外之旅", ContentUrl.Pic.PIC_SMALL_6, 30 * 60 + 10, null, null, "1111003", DateUtil.stringToDate("20040501000000").getTime()));
+        vodCollects.add(new VodCollect("2", "22", null, "指环王", ContentUrl.Pic.PIC_SMALL_7, 40 * 60 + 59, null, null, "35777", DateUtil.stringToDate("20050501000000").getTime()));
+        vodCollects.add(new VodCollect("3", "23", null, "幽游白书", ContentUrl.Pic.PIC_SMALL_4, 45 * 60, null, null, "434535", DateUtil.stringToDate("20060501000000").getTime()));
         resp.vodCollects = vodCollects;
         resp.result = 0;
         resp.message = "success";

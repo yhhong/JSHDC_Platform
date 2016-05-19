@@ -1,7 +1,8 @@
 package jshdc.controller;
 
-import jshdc.bean.response.device.Device;
+import com.google.gson.Gson;
 import jshdc.bean.response.device.DeleteDeviceResp;
+import jshdc.bean.response.device.Device;
 import jshdc.bean.response.device.GetDevicesResp;
 import jshdc.bean.response.device.PostDeviceResp;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,11 @@ public class DeviceController {
 
     @RequestMapping(value = "/postDevice")
     public PostDeviceResp postDevice(@RequestParam String userToken,
-                                     @RequestParam Device device) {
+                                     @RequestParam String device) {
+        System.out.println(device);
+        Device deviceInfo = new Gson().fromJson(device, Device.class);
+        System.out.println(deviceInfo);
+
         PostDeviceResp resp = new PostDeviceResp();
         resp.result = 0;
         resp.message = "success";
@@ -51,6 +56,6 @@ public class DeviceController {
         resp.result = 0;
         resp.message = "success";
         System.out.println(resp);
-        return null;
+        return resp;
     }
 }

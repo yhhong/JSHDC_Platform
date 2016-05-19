@@ -11,6 +11,9 @@ public class Device {
     public String udn;
     public long lastConnectTime;
 
+    public Device() {
+    }
+
     public Device(String deviceName, String modelName, String udn, long lastConnectTime) {
         this.deviceName = deviceName;
         this.modelName = modelName;
