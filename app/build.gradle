@@ -40,7 +40,7 @@ task clearJar(type: Delete) {
 }
 
 //// 只打包指定目录下的文件
-//task makeJar(type:Jar) {
+//task makeJar(contentType:Jar) {
 //    //指定生成的jar名
 //    baseName 'jshdc_platform'
 //    //从哪里打包class文件

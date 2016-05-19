@@ -8,16 +8,16 @@ public class Content {
     public String id;
     public String name;
     public String poster;
-    public String type;
+    public String contentType;
     public String tableId;
     public String element1;
     public String element2;
 
-    public Content(String id, String name, String poster, String type, String tableId, String element1, String element2) {
+    public Content(String id, String name, String poster, String contentType, String tableId, String element1, String element2) {
         this.id = id;
         this.name = name;
         this.poster = poster;
-        this.type = type;
+        this.contentType = contentType;
         this.tableId = tableId;
         this.element1 = element1;
         this.element2 = element2;
@@ -29,7 +29,7 @@ public class Content {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", poster='" + poster + '\'' +
-                ", type='" + type + '\'' +
+                ", contentType='" + contentType + '\'' +
                 ", tableId='" + tableId + '\'' +
                 ", element1='" + element1 + '\'' +
                 ", element2='" + element2 + '\'' +
