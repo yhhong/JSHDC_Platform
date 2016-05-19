@@ -98,7 +98,7 @@ public class SystemController {
                 List<Content> contents2 = new ArrayList<>();
                 contents2.add(new Content("5", "[CCTV5]世界杯战况", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "1", "9.6", "10000次"));
                 contents2.add(new Content("6", "[江苏卫视]舌尖上的中国", ContentUrl.Pic.PIC_PROGRAM_3, ContentType.PROGRAM, "2", "9.6", "2000次"));
-                floors.add(new Floor("0", "直播", "排序", TemplateType.OTT_ONE_TWO, ViewType.LIVE_MAIN, "CCTV5/江苏卫视", null, contents2, null));
+                floors.add(new Floor("0", "直播", "排序", TemplateType.OTT_ONE_TWO, ViewType.LIVE_MAIN, "更多", null, contents2, null));
 
                 List<Content> contents3 = new ArrayList<>();
                 contents3.add(new Content("7", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, ContentType.VIDEO, "5", "9.6", null));
@@ -110,7 +110,7 @@ public class SystemController {
                 contents4.add(new Content("10", "淘宝", ContentUrl.Pic.PIC_APP_3, ContentType.APP, "3", null, null));
                 contents4.add(new Content("11", "QQ空间", ContentUrl.Pic.PIC_APP_4, ContentType.APP, "4", null, null));
                 contents4.add(new Content("12", "微信", ContentUrl.Pic.PIC_APP_6, ContentType.APP, "6", null, null));
-                floors.add(new Floor("0", "应用", "排序", TemplateType.OTT_ONE_FOUR, ViewType.APP_MAIN, "更多", null, contents4, null));
+                floors.add(new Floor("0", "应用", "排序", TemplateType.OTT_ONE_FOUR, null, null, null, contents4, null));
                 break;
             case "2000":
                 List<Content> liveContents1 = new ArrayList<>();
@@ -175,24 +175,24 @@ public class SystemController {
             case "4005":
             case "4006":
                 List<Content> appContents1 = new ArrayList<>();
-                appContents1.add(new Content("2", "微博", ContentUrl.Pic.PIC_BIG_4, ContentType.APP, null, null, null));
-                appContents1.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_BIG_3, ContentType.APP, null, null, null));
-                appContents1.add(new Content("5", "搜狗输入法", ContentUrl.Pic.PIC_BIG_2, ContentType.APP, null, null, null));
+                appContents1.add(new Content("2", "微博", ContentUrl.Pic.PIC_BIG_4, ContentType.APP, "2", null, null));
+                appContents1.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_BIG_3, ContentType.APP, "3", null, null));
+                appContents1.add(new Content("5", "搜狗输入法", ContentUrl.Pic.PIC_BIG_2, ContentType.APP, "5", null, null));
                 floors.add(new Floor("0", "轮播类型..", "排序", TemplateType.COMMON_CAROUSEL, null, null, null, appContents1, null));
 
                 List<Content> appContents2 = new ArrayList<>();
-                appContents2.add(new Content("2", "微博", ContentUrl.Pic.PIC_APP_BIG_2, ContentType.APP, null, null, null));
-                appContents2.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_APP_BIG_3, ContentType.APP, null, null, null));
-                appContents2.add(new Content("6", "微信", ContentUrl.Pic.PIC_APP_BIG_6, ContentType.APP, null, null, null));
+                appContents2.add(new Content("2", "微博", ContentUrl.Pic.PIC_APP_BIG_2, ContentType.APP, "2", null, null));
+                appContents2.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_APP_BIG_3, ContentType.APP, "3", null, null));
+                appContents2.add(new Content("6", "微信", ContentUrl.Pic.PIC_APP_BIG_6, ContentType.APP, "6", null, null));
                 floors.add(new Floor("0", "教育学习", "排序", TemplateType.APP_THREE_ONE, null, null, null, appContents2, null));
 
                 List<Content> appContents3 = new ArrayList<>();
-                appContents3.add(new Content("1", "相机360", ContentUrl.Pic.PIC_APP_BIG_1, ContentType.APP, null, null, null));
-                appContents3.add(new Content("2", "微博", ContentUrl.Pic.PIC_APP_BIG_2, ContentType.APP, null, null, null));
-                appContents3.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_APP_BIG_3, ContentType.APP, null, null, null));
-                appContents3.add(new Content("4", "QQ空间", ContentUrl.Pic.PIC_APP_BIG_4, ContentType.APP, null, null, null));
-                appContents3.add(new Content("5", "搜狗输入法", ContentUrl.Pic.PIC_APP_BIG_5, ContentType.APP, null, null, null));
-                appContents3.add(new Content("6", "微信", ContentUrl.Pic.PIC_APP_BIG_6, ContentType.APP, null, null, null));
+                appContents3.add(new Content("1", "相机360", ContentUrl.Pic.PIC_APP_BIG_1, ContentType.APP, "1", null, null));
+                appContents3.add(new Content("2", "微博", ContentUrl.Pic.PIC_APP_BIG_2, ContentType.APP, "2", null, null));
+                appContents3.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_APP_BIG_3, ContentType.APP, "3", null, null));
+                appContents3.add(new Content("4", "QQ空间", ContentUrl.Pic.PIC_APP_BIG_4, ContentType.APP, "4", null, null));
+                appContents3.add(new Content("5", "搜狗输入法", ContentUrl.Pic.PIC_APP_BIG_5, ContentType.APP, "5", null, null));
+                appContents3.add(new Content("6", "微信", ContentUrl.Pic.PIC_APP_BIG_6, ContentType.APP, "6", null, null));
                 floors.add(new Floor("0", "热门排行", "排序", TemplateType.APP_TWO_THREE, null, null, null, appContents3, null));
                 break;
             default:
