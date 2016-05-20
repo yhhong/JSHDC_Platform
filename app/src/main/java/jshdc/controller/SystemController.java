@@ -181,9 +181,9 @@ public class SystemController {
                 floors.add(new Floor("0", "轮播类型..", "排序", TemplateType.COMMON_CAROUSEL, null, null, null, appContents1, null));
 
                 List<Content> appContents2 = new ArrayList<>();
-                appContents2.add(new Content("2", "微博", ContentUrl.Pic.PIC_APP_BIG_2, ContentType.APP, "2", "110042", "5.0", null, null, null));
-                appContents2.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_APP_BIG_3, ContentType.APP, "3", "299955", "9.0", null, null, null));
-                appContents2.add(new Content("6", "微信", ContentUrl.Pic.PIC_APP_BIG_6, ContentType.APP, "6", "50053", "6.0", null, null, null));
+                appContents2.add(new Content("2", "微博", ContentUrl.Pic.PIC_APP_2, ContentType.APP, "2", "110042", "10.9", "新浪微博刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷刷", null, null));
+                appContents2.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_APP_3, ContentType.APP, "3", "299955", "29.3", "淘宝买买买买买买买买买买买买买买买买买买买买买买买买买买买买买", null, null));
+                appContents2.add(new Content("6", "微信", ContentUrl.Pic.PIC_APP_6, ContentType.APP, "6", "50053", "26.1", "这是微信............", null, null));
                 floors.add(new Floor("0", "教育学习", "排序", TemplateType.APP_THREE_ONE, null, null, null, appContents2, null));
 
                 List<Content> appContents3 = new ArrayList<>();
@@ -237,12 +237,14 @@ public class SystemController {
         contents1.add(new Content("23", "幽游白书", ContentUrl.Pic.PIC_SMALL_4, ContentType.VIDEO, "8", null, null, null, null, null));
         contents1.add(new Content("24", "神奇宝贝", ContentUrl.Pic.PIC_SMALL_5, ContentType.VIDEO, "9", null, null, null, null, null));
         contents1.add(new Content("3", "少年派的奇幻漂流", ContentUrl.Pic.PIC_SMALL_6, ContentType.VIDEO, "3", null, null, null, null, null));
+        contents1.add(new Content("4", "海贼王第710话", ContentUrl.Pic.PIC_SMALL_7, ContentType.VIDEO, "4", null, null, null, null, null));
+        contents1.add(new Content("7", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, ContentType.VIDEO, "5", null, null, null, null, null));
         floors.add(new Floor("0", "视频", "排序", TemplateType.OTT_BLUR, null, null, null, contents1, null));
 
         List<Content> contents2 = new ArrayList<>();
-        contents2.add(new Content("1", "相机360", ContentUrl.Pic.PIC_APP_1, ContentType.APP, "1", null, null, null, null, null));
-        contents2.add(new Content("2", "微博", ContentUrl.Pic.PIC_APP_2, ContentType.APP, "2", null, null, null, null, null));
-        contents2.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_APP_3, ContentType.APP, "3", null, null, null, null, null));
+        contents2.add(new Content("1", "相机360", ContentUrl.Pic.PIC_APP_BIG_1, ContentType.APP, "1", null, null, null, null, null));
+        contents2.add(new Content("2", "微博", ContentUrl.Pic.PIC_APP_BIG_2, ContentType.APP, "2", null, null, null, null, null));
+        contents2.add(new Content("3", "淘宝", ContentUrl.Pic.PIC_APP_BIG_3, ContentType.APP, "3", null, null, null, null, null));
         floors.add(new Floor("0", "应用", "排序", TemplateType.APP_BLUR, null, null, null, contents2, null));
 
         SearchResp resp = new SearchResp();
