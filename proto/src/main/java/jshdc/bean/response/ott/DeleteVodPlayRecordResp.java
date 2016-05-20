@@ -1,16 +1,17 @@
 package jshdc.bean.response.ott;
 
 /**
- * 记录新增
- * Created by yinghuihong on 16/1/11.
+ * 删除点播播放记录
+ * Created by yinghuihong on 16/5/20.
  */
-public class PostVodRecordResp {
+public class DeleteVodPlayRecordResp {
+
     public int result;
     public String message;
 
     @Override
     public String toString() {
-        return "PostVodRecordResp{" +
+        return "DeleteVodPlayRecordResp{" +
                 "result=" + result +
                 ", message='" + message + '\'' +
                 '}';

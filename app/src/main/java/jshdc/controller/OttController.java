@@ -378,9 +378,9 @@ public class OttController {
 
 
     @RequestMapping(value = "/postVodCollect")
-    public PostVodCollectResp postCollect(@RequestParam String userToken,
-                                          @RequestParam String videoId,
-                                          @RequestParam String teleplayId) {
+    public PostVodCollectResp postVodCollect(@RequestParam String userToken,
+                                             @RequestParam String videoId,
+                                             @RequestParam String teleplayId) {
         PostVodCollectResp resp = new PostVodCollectResp();
         resp.result = 0;
         resp.message = "success";
@@ -389,9 +389,9 @@ public class OttController {
     }
 
     @RequestMapping(value = "/deleteVodCollect")
-    public DeleteVodCollectResp deleteCollect(@RequestParam String userToken,
-                                              @RequestParam String videoId,
-                                              @RequestParam String teleplayId) {
+    public DeleteVodCollectResp deleteVodCollect(@RequestParam String userToken,
+                                                 @RequestParam String videoId,
+                                                 @RequestParam String teleplayId) {
         DeleteVodCollectResp resp = new DeleteVodCollectResp();
         resp.result = 0;
         resp.message = "success";
@@ -400,9 +400,9 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getVodCollects")
-    public GetVodCollectsResp getCollects(@RequestParam String userToken,
-                                          @RequestParam(required = false, defaultValue = "0") int start,
-                                          @RequestParam(required = false, defaultValue = "20") int limit) {
+    public GetVodCollectsResp getVodCollects(@RequestParam String userToken,
+                                             @RequestParam(required = false, defaultValue = "0") int start,
+                                             @RequestParam(required = false, defaultValue = "20") int limit) {
         GetVodCollectsResp resp = new GetVodCollectsResp();
         List<VodCollect> vodCollects = new ArrayList<>();
         vodCollects.add(new VodCollect("1", null, "31", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, 0, "24", "24", "1099999", DateUtil.stringToDate("20010501000000").getTime()));
@@ -419,11 +419,21 @@ public class OttController {
     }
 
     @RequestMapping(value = "/postVodPlayRecord")
-    public PostVodRecordResp postRecord(@RequestParam String userToken,
-                                        @RequestParam String videoId,
-                                        @RequestParam String playedTime) {
+    public PostVodPlayRecordResp postVodPlayRecord(@RequestParam String userToken,
+                                                   @RequestParam String videoId,
+                                                   @RequestParam String playedTime) {
         // save a record into VodPlayRecord Table
-        PostVodRecordResp resp = new PostVodRecordResp();
+        PostVodPlayRecordResp resp = new PostVodPlayRecordResp();
+        resp.result = 0;
+        resp.message = "success";
+        System.out.println(resp);
+        return resp;
+    }
+
+    @RequestMapping(value = "/deleteVodPlayRecord")
+    public DeleteVodPlayRecordResp deleteVodPlayRecord(@RequestParam String userToken,
+                                                       @RequestParam String videoId) {
+        DeleteVodPlayRecordResp resp = new DeleteVodPlayRecordResp();
         resp.result = 0;
         resp.message = "success";
         System.out.println(resp);
@@ -431,9 +441,9 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getVodPlayRecords")
-    public GetVodPlayRecordsResp getRecords(@RequestParam String userToken,
-                                            @RequestParam(required = false, defaultValue = "0") int start,
-                                            @RequestParam(required = false, defaultValue = "20") int limit) {
+    public GetVodPlayRecordsResp getVodPlayRecords(@RequestParam String userToken,
+                                                   @RequestParam(required = false, defaultValue = "0") int start,
+                                                   @RequestParam(required = false, defaultValue = "20") int limit) {
         GetVodPlayRecordsResp resp = new GetVodPlayRecordsResp();
         List<VodPlayRecord> vodPlayRecords = new ArrayList<>();
         vodPlayRecords.add(new VodPlayRecord("1", null, "31", "6", "名侦探柯南", ContentUrl.Pic.PIC_SMALL_1, "913123", DateUtil.stringToDate("20010501000000").getTime()));
@@ -450,9 +460,9 @@ public class OttController {
     }
 
     @RequestMapping(value = "/getVodRecommends")
-    public GetVodRecommendsResp getRecommendContents(@RequestParam String userToken,
-                                                     @RequestParam String videoId,
-                                                     @RequestParam String teleplayId) {
+    public GetVodRecommendsResp getVodRecommends(@RequestParam String userToken,
+                                                 @RequestParam String videoId,
+                                                 @RequestParam String teleplayId) {
         GetVodRecommendsResp resp = new GetVodRecommendsResp();
         List<VodRecommend> vodRecommends = new ArrayList<>();
         vodRecommends.add(new VodRecommend("1", "22", null, "指环王", ContentUrl.Pic.PIC_SMALL_7, "directors", "actors", "description", "8.1", DateUtil.stringToDate("20110101000000").getTime(), "10000"));
