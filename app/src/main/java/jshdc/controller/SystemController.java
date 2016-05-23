@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by yinghuihong on 16/5/16.
@@ -96,8 +95,8 @@ public class SystemController {
                 floors.add(new Floor("0", null, "排序", TemplateType.COMMON_CAROUSEL, null, null, null, contents1, null));
 
                 List<Content> contents2 = new ArrayList<>();
-                contents2.add(new Content("5", "[CCTV5]世界杯战况", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "1", "9.6", "10000次", null, null, null));
-                contents2.add(new Content("6", "[江苏卫视]舌尖上的中国", ContentUrl.Pic.PIC_PROGRAM_3, ContentType.PROGRAM, "2", "9.6", "2000次", null, null, null));
+                contents2.add(new Content("5", "[CCTV5]世界杯战况", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, generateProgramIdByChannelId("5"), "9.6", "10000次", null, null, null));
+                contents2.add(new Content("6", "[江苏卫视]舌尖上的中国", ContentUrl.Pic.PIC_PROGRAM_3, ContentType.PROGRAM, generateProgramIdByChannelId("9"), "9.6", "2000次", null, null, null));
                 floors.add(new Floor("0", "直播", "排序", TemplateType.OTT_ONE_TWO, ViewType.LIVE_MAIN, "更多", null, contents2, null));
 
                 List<Content> contents3 = new ArrayList<>();
@@ -114,15 +113,15 @@ public class SystemController {
                 break;
             case "2000":
                 List<Content> liveContents1 = new ArrayList<>();
-                liveContents1.add(new Content("1", "飞屋环游记", ContentUrl.Pic.PIC_BIG_1, ContentType.PROGRAM, "1", null, null, null, null, null));
-                liveContents1.add(new Content("2", "叛逆的鲁路修第110话", ContentUrl.Pic.PIC_BIG_2, ContentType.PROGRAM, "2", null, null, null, null, null));
-                liveContents1.add(new Content("3", "少年派的奇幻漂流", ContentUrl.Pic.PIC_BIG_3, ContentType.PROGRAM, "3", null, null, null, null, null));
-                liveContents1.add(new Content("4", "海贼王第710话", ContentUrl.Pic.PIC_BIG_4, ContentType.PROGRAM, "4", null, null, null, null, null));
+                liveContents1.add(new Content("1", "飞屋环游记", ContentUrl.Pic.PIC_BIG_1, ContentType.PROGRAM, generateProgramIdByChannelId("1"), null, null, null, null, null));
+                liveContents1.add(new Content("2", "叛逆的鲁路修第110话", ContentUrl.Pic.PIC_BIG_2, ContentType.PROGRAM, generateProgramIdByChannelId("2"), null, null, null, null, null));
+                liveContents1.add(new Content("3", "少年派的奇幻漂流", ContentUrl.Pic.PIC_BIG_3, ContentType.PROGRAM, generateProgramIdByChannelId("3"), null, null, null, null, null));
+                liveContents1.add(new Content("4", "海贼王第710话", ContentUrl.Pic.PIC_BIG_4, ContentType.PROGRAM, generateProgramIdByChannelId("4"), null, null, null, null, null));
                 floors.add(new Floor("0", null, "排序", TemplateType.COMMON_CAROUSEL, null, null, null, liveContents1, null));
 
                 List<Content> liveContents2 = new ArrayList<>();
-                liveContents2.add(new Content("9", "巴西世界杯", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, "5", "9.6", null, null, null, null));
-                liveContents2.add(new Content("10", "新闻30分", ContentUrl.Pic.PIC_PROGRAM_2, ContentType.PROGRAM, "6", "9.6", null, null, null, null));
+                liveContents2.add(new Content("9", "巴西世界杯", ContentUrl.Pic.PIC_PROGRAM_1, ContentType.PROGRAM, generateProgramIdByChannelId("5"), "9.6", null, null, null, null));
+                liveContents2.add(new Content("10", "新闻30分", ContentUrl.Pic.PIC_PROGRAM_2, ContentType.PROGRAM, generateProgramIdByChannelId("6"), "9.6", null, null, null, null));
                 floors.add(new Floor("0", "精彩回看", "排序", TemplateType.OTT_ONE_TWO, ViewType.LIVE_PROGRAMME, "所有回看", null, liveContents2, null));
 
                 List<Content> liveContents3 = new ArrayList<>();
@@ -208,6 +207,19 @@ public class SystemController {
         resp.lastModifyTime = System.currentTimeMillis();
         System.out.println(resp);
         return resp;
+    }
+
+    private String generateProgramIdByChannelId(String channelId) {
+        Calendar calendar = Calendar.getInstance();  //得到日历
+        calendar.setTime(new Date());//把当前时间赋给日历
+        calendar.set(Calendar.HOUR_OF_DAY, new Random().nextInt(24));
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DAY_OF_MONTH, -1);  //设置为前一天
+        long start = calendar.getTimeInMillis();
+        long end = start + 1000 * 60 * 60;
+        return channelId + "_" + start + "_" + end;
     }
 
     @RequestMapping(value = "/getContents")

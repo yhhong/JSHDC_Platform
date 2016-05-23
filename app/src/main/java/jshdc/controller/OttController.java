@@ -64,22 +64,75 @@ public class OttController {
     @RequestMapping(value = "/getProgramDetail")
     public GetProgramDetailResp getProgramDetail(@RequestParam String userToken,
                                                  @RequestParam String programId) {
+        Program program = null;
+//        switch (programId) {// 手动配置的节目ID
+//            case "1":
+//                program = new Program("1", "世界杯战况", ContentUrl.CCTV1_LOOK_BACK + "?PlaySeek=" + "20160520180000" + "-" + "20160520190000", DateUtil.stringToDate("20160520180000").getTime(), 60 * 60 * 1000, "回看", "2014年世界杯", "1");
+//                break;
+//            case "2":
+//                program = new Program("2", "新闻30分", ContentUrl.CCTV1_LOOK_BACK + "?PlaySeek=" + "20160520190000" + "-" + "20160520193500", DateUtil.stringToDate("20160520190000").getTime(), 35 * 60 * 1000, "回看", "CCTV9新闻台正午播放", "1");
+//                break;
+////            default:
+////                program = new Program("1", "世界杯战况", ContentUrl.CCTV1_LOOK_BACK + "?PlaySeek=" + "20160420180000" + "-" + "20160420190000", DateUtil.stringToDate("20160420180000").getTime(), 60 * 60 * 1000, "回看", "2014年世界杯", "1");
+////                break;
+//        }
         GetProgramDetailResp resp = new GetProgramDetailResp();
-        Program program;
-        switch (programId) {
-            case "1":
-                program = new Program("1", "世界杯战况", ContentUrl.CCTV1_LOOK_BACK + "?PlaySeek=" + "20160420180000" + "-" + "20160420190000", DateUtil.stringToDate("20160420180000").getTime(), 60 * 60 * 1000, "回看", "2014年世界杯", "1");
-                break;
-            case "2":
-                program = new Program("2", "新闻30分", ContentUrl.CCTV1_LOOK_BACK + "?PlaySeek=" + "20160420190000" + "-" + "20160420193500", DateUtil.stringToDate("20160420190000").getTime(), 35 * 60 * 1000, "回看", "CCTV9新闻台正午播放", "1");
-                break;
-            default:
-                program = new Program("1", "世界杯战况", ContentUrl.CCTV1_LOOK_BACK + "?PlaySeek=" + "20160420180000" + "-" + "20160420190000", DateUtil.stringToDate("20160420180000").getTime(), 60 * 60 * 1000, "回看", "2014年世界杯", "1");
-                break;
+        if (program == null) {
+            // 自动生成的节目单数据
+            try {
+                String[] s = programId.split("_");
+                String channelId = s[0];
+                long startTime = Long.parseLong(s[1]);
+                long endTime = Long.parseLong(s[2]);
+                List<Program> programs = new ArrayList<>();
+                switch (channelId) {
+                    case "1":
+                        programs.addAll(providePrograms(ContentUrl.CCTV1_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    case "2":
+                        programs.addAll(providePrograms(ContentUrl.CCTV2_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    case "3":
+                        programs.addAll(providePrograms(ContentUrl.CCTV3_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    case "4":
+                        programs.addAll(providePrograms(ContentUrl.CCTV4_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    case "5":
+                        programs.addAll(providePrograms(ContentUrl.CCTV5_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    case "6":
+                        programs.addAll(providePrograms(ContentUrl.CCTV6_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    case "7":
+                        programs.addAll(providePrograms(ContentUrl.CCTV7_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    case "8":
+                        programs.addAll(providePrograms(ContentUrl.CCTV8_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    case "9":
+                        programs.addAll(providePrograms(ContentUrl.CCTV9_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    case "10":
+                        programs.addAll(providePrograms(ContentUrl.CCTV10_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                    default:
+                        programs.addAll(providePrograms(ContentUrl.CCTV1_LOOK_BACK, startTime, endTime, channelId));
+                        break;
+                }
+                program = programs.get(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        resp.program = program;
-        resp.result = 0;
-        resp.message = "success";
+        if (program == null) {
+            resp.result = 1;
+            resp.message = "fail, the programId is " + programId;
+        } else {
+            resp.program = program;
+            resp.result = 0;
+            resp.message = "success";
+        }
         System.out.println(resp);
         return resp;
     }
@@ -203,7 +256,7 @@ public class OttController {
             } else {
                 playType = "3";// 预告
             }
-            Program program = new Program(UUID.randomUUID().toString(), "节目-" + DateUtil.longToString3(end),
+            Program program = new Program(channelId + "_" + start + "_" + end, "节目-" + DateUtil.longToString3(end),
                     channelUrl + "?PlaySeek=" + DateUtil.longToString(start) + "-" + DateUtil.longToString(end),
                     start, end - start, playType, null, channelId);
             System.out.println("START " + calStart.getTimeInMillis() + ", END " + calEnd.getTimeInMillis());

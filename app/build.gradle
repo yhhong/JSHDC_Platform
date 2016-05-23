@@ -26,7 +26,7 @@ dependencies {
 
 jar {
     baseName = 'app'
-    version = '0.0.3'
+    version = '1.0.1.2016052302'
 }
 
 task wrapper(type: Wrapper) {
