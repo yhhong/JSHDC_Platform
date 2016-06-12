@@ -1,0 +1,35 @@
+group 'com.aspire.jshdc'
+version '0.0.1'
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: "http://10.12.3.22:8088/nexus/content/repositories/releases") {
+                authentication(userName: "deployment", password: "aspire\$deploy")
+            }
+//            repository(url: "http://112.4.10.96:8099/nexus/content/repositories/aspire-release") {
+//                authentication(userName: "aspire", password: "aspire+888")
+//            }
+            pom.project {
+                groupId 'com.aspirecn.jshdc'
+                artifactId 'jshdc-proto'
+                packaging 'jar'
+                version '1.0.16'
+            }
+        }
+    }
+}

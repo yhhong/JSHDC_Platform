@@ -1,0 +1,15 @@
+---
+applications:
+- name: jshdc
+  memory: 256M
+  instances: 1
+  host: rest-service
+  domain: guides.spring.io
+  path: build/libs/jshdc-0.1.0.jar
+
+# Server settings (ServerProperties)
+server:
+  port: 80
+  address: www.yinghuihong.com
+  sessionTimeout: 30
+  contextPath: /
